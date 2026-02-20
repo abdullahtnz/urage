@@ -252,3 +252,55 @@ void btree_print(BTree *tree) {
     printf("B-Tree Structure:\n");
     btree_print_node(tree->pager, tree->root_page_num, 0);
 }
+
+// Add this function to btree.c
+DB_Result btree_delete(BTree *tree, uint32_t key) {
+    if (!tree || !tree->pager) return DB_ERROR;
+    
+    // For now, let's implement a simple version that just marks as deleted
+    // A full implementation would do proper B-tree deletion with rebalancing
+    
+    page_num_t current_page = tree->root_page_num;
+    void *node = pager_get_page(tree->pager, current_page);
+    NodeHeader *header = (NodeHeader *)node;
+    
+    // Navigate to leaf
+    while (header->type == NODE_INTERNAL) {
+        InternalNode *internal = (InternalNode *)node;
+        
+        int child_index = 0;
+        while (child_index < internal->num_keys && key >= internal->keys[child_index]) {
+            child_index++;
+        }
+        
+        current_page = internal->children[child_index];
+        node = pager_get_page(tree->pager, current_page);
+        header = (NodeHeader *)node;
+    }
+    
+    // Now at leaf node
+    LeafNode *leaf = (LeafNode *)node;
+    
+    // Find and remove the key
+    int found = -1;
+    for (int i = 0; i < leaf->num_cells; i++) {
+        if (leaf->keys[i] == key) {
+            found = i;
+            break;
+        }
+    }
+    
+    if (found == -1) {
+        return DB_NOT_FOUND;  // Key doesn't exist
+    }
+    
+    // Shift all cells after found index left
+    for (int i = found; i < leaf->num_cells - 1; i++) {
+        leaf->keys[i] = leaf->keys[i + 1];
+        leaf->values[i] = leaf->values[i + 1];
+    }
+    
+    leaf->num_cells--;
+    
+    return DB_SUCCESS;
+}

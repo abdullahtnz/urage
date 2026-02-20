@@ -59,3 +59,23 @@ DB_Result storage_read(Storage *storage, page_num_t page, offset_t offset, void 
     
     return DB_SUCCESS;
 }
+
+// Add this function to storage.c
+DB_Result storage_delete(Storage *storage, page_num_t page, offset_t offset) {
+    if (!storage || !storage->pager) return DB_ERROR;
+    
+    void *page_data = pager_get_page(storage->pager, page);
+    if (!page_data) return DB_ERROR;
+    
+    // Read the size of the record (stored before the data)
+    uint32_t size;
+    memcpy(&size, (char *)page_data + offset, sizeof(uint32_t));
+    
+    // Add to free list (mark as available for reuse)
+    // For simplicity, we'll just zero out the first few bytes to mark as deleted
+    // A real implementation would maintain a proper free list
+    uint32_t deleted_marker = 0xDEADBEEF;
+    memcpy((char *)page_data + offset, &deleted_marker, sizeof(uint32_t));
+    
+    return DB_SUCCESS;
+}

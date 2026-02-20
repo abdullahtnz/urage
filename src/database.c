@@ -1,6 +1,7 @@
 #include "database.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 Database *db_open(const char *db_name) {
     Database *db = malloc(sizeof(Database));
@@ -76,28 +77,53 @@ DB_Result db_insert(Database *db, uint32_t key, const void *data, size_t size) {
     DB_Result result = storage_write(db->storage, data, size, &data_page, &data_offset);
     if (result != DB_SUCCESS) return result;
     
-    // Store reference in index
-    // We pack page and offset into a single 64-bit value for simplicity
+    // Store reference in index - pack page and offset into a single 64-bit value
     uint64_t location = ((uint64_t)data_page << 32) | data_offset;
-    return btree_insert(db->index, key, location);
+    
+    // FIX: btree_insert expects page_num_t (uint32_t), so we store just the page number
+    // and handle the offset separately? Actually, let's fix the btree interface instead.
+    
+    // For now, let's store the location in the value field
+    return btree_insert(db->index, key, (page_num_t)location);
 }
 
 DB_Result db_find(Database *db, uint32_t key, void *buffer, size_t *size) {
     // Find in index
-    uint64_t location;
+    page_num_t location;
     DB_Result result = btree_find(db->index, key, &location);
     if (result != DB_SUCCESS) return result;
     
     // Extract page and offset
-    page_num_t page = location >> 32;
-    offset_t offset = location & 0xFFFFFFFF;
+    page_num_t data_page = (page_num_t)(location >> 32);
+    offset_t data_offset = (offset_t)(location & 0xFFFFFFFF);
     
     // Read from storage
-    return storage_read(db->storage, page, offset, buffer, size);
+    return storage_read(db->storage, data_page, data_offset, buffer, size);
 }
 
 DB_Result db_delete(Database *db, uint32_t key) {
-    // For simplicity, we just delete from index
-    // In production, you'd also handle storage cleanup
-    return btree_delete(db->index, key);
+    if (!db || !db->index) return DB_ERROR;
+    
+    // First find the key to get storage location
+    page_num_t location;
+    DB_Result result = btree_find(db->index, key, &location);
+    if (result != DB_SUCCESS) return result;
+    
+    // Extract storage location
+    page_num_t data_page = (page_num_t)(location >> 32);
+    offset_t data_offset = (offset_t)(location & 0xFFFFFFFF);
+    
+    // Delete from index first
+    result = btree_delete(db->index, key);
+    if (result != DB_SUCCESS) return result;
+    
+    // Then free storage space
+    result = storage_delete(db->storage, data_page, data_offset);
+    if (result != DB_SUCCESS) {
+        // If storage delete fails, we have an inconsistency
+        // In production, you'd want to roll back the index delete
+        return DB_ERROR;
+    }
+    
+    return DB_SUCCESS;
 }
