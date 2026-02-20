@@ -52,9 +52,12 @@ void pager_close(Pager *pager) {
 void *pager_get_page(Pager *pager, page_num_t page_num) {
     if (page_num > TABLE_MAX_PAGES) return NULL;
     
+    printf("Debug: pager_get_page(%u), num_pages=%u\n", page_num, pager->num_pages);
+    
     // Cache miss - load from disk
     if (!pager->pages[page_num]) {
-        void *page = malloc(pager->page_size);
+        printf("Debug: Loading page %u from disk\n", page_num);
+        void *page = calloc(1, pager->page_size);  // Use calloc to zero the memory
         if (!page) return NULL;
         
         // Seek to page location
@@ -76,6 +79,14 @@ void *pager_get_page(Pager *pager, page_num_t page_num) {
         if (page_num >= pager->num_pages) {
             pager->num_pages = page_num + 1;
         }
+        
+        printf("Debug: Page %u loaded, first 16 bytes:\n", page_num);
+        for (int i = 0; i < 16; i++) {
+            printf("%02X ", ((unsigned char*)page)[i]);
+        }
+        printf("\n");
+    } else {
+        printf("Debug: Page %u found in cache\n", page_num);
     }
     
     return pager->pages[page_num];
@@ -130,3 +141,4 @@ page_num_t pager_allocate_page(Pager *pager) {
     }
     return INVALID_PAGE;
 }
+

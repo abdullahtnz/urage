@@ -55,25 +55,32 @@ int main(int argc, char *argv[]) {
         }
         else if (strncmp(command, "find", 4) == 0) {
             if (sscanf(command + 4, "%u", &key) == 1) {
-                char buffer[256];
-                size_t size = sizeof(buffer);
+                char buffer[256] = {0};
+                size_t size = sizeof(buffer) - 1;
+                
                 DB_Result result = db_find(db, key, buffer, &size);
+                
                 if (result == DB_SUCCESS) {
+                    buffer[size] = '\0';
                     printf("Found: %u -> %s\n", key, buffer);
-                } else {
+                } else if (result == DB_NOT_FOUND) {
                     printf("Key %u not found\n", key);
+                } else {
+                    printf("Error finding key %u\n", key);
                 }
             } else {
                 printf("Usage: find <key>\n");
             }
         }
-        else if (strncmp(command, "delete", 6) == 0) {
+        else if (strncmp(command, "delete", 6) == 0) {  // ADDED DELETE COMMAND
             if (sscanf(command + 6, "%u", &key) == 1) {
                 DB_Result result = db_delete(db, key);
                 if (result == DB_SUCCESS) {
                     printf("Deleted key %u\n", key);
+                } else if (result == DB_NOT_FOUND) {
+                    printf("Key %u not found\n", key);
                 } else {
-                    printf("Delete failed\n");
+                    printf("Delete failed: %d\n", result);
                 }
             } else {
                 printf("Usage: delete <key>\n");

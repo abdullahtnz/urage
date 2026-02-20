@@ -17,45 +17,84 @@ Storage *storage_create(Pager *pager) {
     return storage;
 }
 
-DB_Result storage_write(Storage *storage, const void *data, size_t size, page_num_t *page, offset_t *offset) {
-    // Simple implementation - just use first page for now
-    // In production, you'd manage multiple data pages
-    *page = 1;  // Use page 1 for data storage
+DB_Result storage_write(Storage *storage, const void *data, size_t size, 
+                        page_num_t *page, offset_t *offset) {
+    // Use page 1 for data storage
+    *page = 1;
     
     void *page_data = pager_get_page(storage->pager, *page);
     if (!page_data) return DB_ERROR;
     
+    // Calculate sizes correctly
+    uint32_t data_with_null = size + 1;  // Size of data including null terminator
+    uint32_t total_size = sizeof(uint32_t) + data_with_null;  // Size prefix + data with null
+    
+    printf("Debug: size=%zu, data_with_null=%u, total_size=%u, next_offset=%u\n", 
+           size, data_with_null, total_size, storage->next_offset);
+    
     // Check if we have space
-    if (storage->next_offset + sizeof(uint32_t) + size > PAGE_SIZE) {
+    if (storage->next_offset + total_size > PAGE_SIZE) {
+        printf("Debug: Storage full! Need %u bytes, have %u\n", 
+               total_size, PAGE_SIZE - storage->next_offset);
         return DB_FULL;
     }
     
-    // Write size prefix then data
-    memcpy((char *)page_data + storage->next_offset, &size, sizeof(uint32_t));
+    // Write size prefix (this is the size INCLUDING null terminator)
+    memcpy((char *)page_data + storage->next_offset, &data_with_null, sizeof(uint32_t));
+    
+    // Write the data
     memcpy((char *)page_data + storage->next_offset + sizeof(uint32_t), data, size);
     
+    // Add null terminator
+    *((char *)page_data + storage->next_offset + sizeof(uint32_t) + size) = '\0';
+    
+    printf("Debug: Wrote size=%u at offset %u\n", data_with_null, storage->next_offset);
+    printf("Debug: Data starts at offset %u\n", storage->next_offset + sizeof(uint32_t));
+    
     *offset = storage->next_offset;
-    storage->next_offset += sizeof(uint32_t) + size;
+    storage->next_offset += total_size;
     
     return DB_SUCCESS;
 }
 
-DB_Result storage_read(Storage *storage, page_num_t page, offset_t offset, void *buffer, size_t *size) {
+DB_Result storage_read(Storage *storage, page_num_t page, offset_t offset, 
+                       void *buffer, size_t *size) {
     void *page_data = pager_get_page(storage->pager, page);
     if (!page_data) return DB_ERROR;
     
-    // Read size prefix
-    uint32_t record_size;
-    memcpy(&record_size, (char *)page_data + offset, sizeof(uint32_t));
+    // Read size prefix (this is the size INCLUDING null terminator)
+    uint32_t data_with_null;
+    memcpy(&data_with_null, (char *)page_data + offset, sizeof(uint32_t));
     
-    if (*size < record_size) {
-        *size = record_size;
-        return DB_ERROR;  // Buffer too small
+    printf("Debug: Read size prefix=%u at offset %u\n", data_with_null, offset);
+    
+    // Validate the size (should be reasonable)
+    if (data_with_null == 0 || data_with_null > PAGE_SIZE) {
+        printf("Debug: Invalid size %u read from offset %u\n", data_with_null, offset);
+        return DB_ERROR;
     }
     
-    // Read data
-    memcpy(buffer, (char *)page_data + offset + sizeof(uint32_t), record_size);
-    *size = record_size;
+    // Calculate actual data size (without null terminator)
+    uint32_t data_size = data_with_null - 1;
+    
+    printf("Debug: Data size without null=%u\n", data_size);
+    
+    // Check if buffer is large enough
+    if (*size < data_size) {
+        *size = data_size;
+        printf("Debug: Buffer too small, need %u bytes\n", data_size);
+        return DB_ERROR;
+    }
+    
+    // Read the data (excluding null terminator for now)
+    memcpy(buffer, (char *)page_data + offset + sizeof(uint32_t), data_size);
+    
+    // Add null terminator
+    ((char *)buffer)[data_size] = '\0';
+    
+    *size = data_size;
+    
+    printf("Debug: Successfully read %u bytes: '%s'\n", data_size, (char *)buffer);
     
     return DB_SUCCESS;
 }
