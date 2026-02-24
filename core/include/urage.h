@@ -146,6 +146,48 @@ URAGE_API urage_result_t urage_cursor_get(urage_cursor_t* cursor,
  */
 URAGE_API void urage_cursor_destroy(urage_cursor_t* cursor);
 
+
+
+// ==================== STRING KEY OPERATIONS ====================
+
+/**
+ * Insert or update a key-value pair with string key
+ * @param db Database handle
+ * @param key String key (will be hashed internally)
+ * @param value Data to store
+ * @param value_size Size of value in bytes
+ * @return URAGE_OK on success
+ */
+URAGE_API urage_result_t urage_put_str(urage_db_t* db, const char* key,
+                                       const void* value, size_t value_size);
+
+/**
+ * Get value by string key
+ * @param db Database handle
+ * @param key String key
+ * @param buffer Output buffer
+ * @param buffer_size Size of buffer (will be set to actual size)
+ * @return URAGE_OK if found, URAGE_NOT_FOUND if not
+ */
+URAGE_API urage_result_t urage_get_str(urage_db_t* db, const char* key,
+                                       void* buffer, size_t* buffer_size);
+
+/**
+ * Delete a key-value pair with string key
+ * @param db Database handle
+ * @param key String key
+ * @return URAGE_OK if deleted, URAGE_NOT_FOUND if not
+ */
+URAGE_API urage_result_t urage_del_str(urage_db_t* db, const char* key);
+
+/**
+ * Check if string key exists
+ * @param db Database handle
+ * @param key String key
+ * @return 1 if exists, 0 if not
+ */
+URAGE_API int urage_exists_str(urage_db_t* db, const char* key);
+
 // ==================== STATISTICS ====================
 
 typedef struct {
