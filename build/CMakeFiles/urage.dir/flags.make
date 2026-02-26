@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -Durage_EXPORTS
 
-C_INCLUDES = -I/home/abdullahtnz/Desktop/uragedb/urage/core/include -I/home/abdullahtnz/Desktop/uragedb/urage/core/src
+C_INCLUDES = -I/home/abdullahtnz/Desktop/urage/core/include -I/home/abdullahtnz/Desktop/urage/core/src
 
 C_FLAGS = -std=gnu99 -fPIC
 

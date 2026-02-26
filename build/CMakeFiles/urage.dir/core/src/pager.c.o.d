@@ -1,8 +1,8 @@
 CMakeFiles/urage.dir/core/src/pager.c.o: \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/pager.c \
+ /home/abdullahtnz/Desktop/urage/core/src/pager.c \
  /usr/include/stdc-predef.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/pager.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/constants.h \
+ /home/abdullahtnz/Desktop/urage/core/src/pager.h \
+ /home/abdullahtnz/Desktop/urage/core/src/constants.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

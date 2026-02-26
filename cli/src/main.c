@@ -4,42 +4,49 @@
 #include "urage.h"
 
 void print_help() {
-    printf("\nURAGE Database CLI\n");
-    printf("===================\n");
+    printf("\n╔══════════════════════════════════════╗");
+    printf("\n║        URAGE Database CLI            ║");
+    printf("\n╚══════════════════════════════════════╝");
     
-    printf("\n📦 Type System Commands:\n");
-    printf("  define <name> { <fields> }  - Define a new struct type\n");
-    printf("  undefine <name>             - Delete a type definition\n");
-    printf("  structs                     - List all defined types\n");
-    printf("  desc <name>                  - Describe a type's fields\n");
+    printf("\n\n┌─ 📦 Type System Commands ─────────────────┐");
+    printf("\n│  define <name> { <fields> }  - Define a new struct type");
+    printf("\n│  undefine <name>             - Delete a type definition");
+    printf("\n│  structs                     - List all defined types");
+    printf("\n│  desc <name>                  - Describe a type's fields");
+    printf("\n└────────────────────────────────────────────┘");
     
-    printf("\n📝 Data Commands (with types):\n");
-    printf("  add <type> <key> <field=value...>  - Add typed data\n");
-    printf("  get <type> <key>                   - Get typed data\n");
+    printf("\n\n┌─ 📝 Data Commands (with types) ───────────┐");
+    printf("\n│  add <type> <key> <field=value...>  - Add typed data");
+    printf("\n│  get <type> <key>                   - Get typed data");
+    printf("\n└────────────────────────────────────────────┘");
     
-    printf("\n🔢 Numeric Key Commands:\n");
-    printf("  addn <key> <value>           - Insert with numeric key\n");
-    printf("  getn <key>                    - Retrieve with numeric key\n");
-    printf("  deln <key>                    - Delete with numeric key\n");
-    printf("  existsn <key>                  - Check numeric key\n");
+    printf("\n\n┌─ 🔢 Numeric Key Commands ─────────────────┐");
+    printf("\n│  addn <key> <value>           - Insert with numeric key");
+    printf("\n│  getn <key>                    - Retrieve with numeric key");
+    printf("\n│  deln <key>                    - Delete with numeric key");
+    printf("\n│  existsn <key>                  - Check numeric key");
+    printf("\n└────────────────────────────────────────────┘");
 
-    printf("\n🔤 String Key Commands:\n");
-    printf("  adds <key> <value>        - Insert with string key\n");
-    printf("  gets <key>                 - Retrieve with string key\n");
-    printf("  dels <key>                 - Delete with string key\n");
-    printf("  exists_str <key>            - Check string key\n");
+    printf("\n\n┌─ 🔤 String Key Commands ──────────────────┐");
+    printf("\n│  adds <key> <value>        - Insert with string key");
+    printf("\n│  gets <key>                 - Retrieve with string key");
+    printf("\n│  dels <key>                 - Delete with string key");
+    printf("\n│  exists_str <key>            - Check string key");
+    printf("\n└────────────────────────────────────────────┘");
     
-    printf("\n📊 General Commands:\n");
-    printf("  stats                       - Show database stats\n");
-    printf("  sync                        - Flush to disk\n");
-    printf("  help                        - Show this help\n");
-    printf("  exit                        - Exit program\n");
+    printf("\n\n┌─ 📊 General Commands ──────────────────────┐");
+    printf("\n│  stats                       - Show database stats");
+    printf("\n│  sync                        - Flush to disk");
+    printf("\n│  help                        - Show this help");
+    printf("\n│  exit                        - Exit program");
+    printf("\n└────────────────────────────────────────────┘\n\n");
 }
 
 int main(int argc, char* argv[]) {
     const char* db_path = argc > 1 ? argv[1] : "mydb";
     
     printf("Opening database: %s\n", db_path);
+    
     
     urage_db_t* db = urage_open(db_path, 0);
     if (!db) {
@@ -48,6 +55,11 @@ int main(int argc, char* argv[]) {
     }
     
     printf("URAGE Database ready. Type 'help' for commands.\n");
+    printf("\n╔══════════════════════════════════════╗");
+    printf("\n║        URAGE Database CLI            ║");
+    printf("\n╚══════════════════════════════════════╝");
+    printf("\n")
+
     
     char line[512];
     char cmd[32];

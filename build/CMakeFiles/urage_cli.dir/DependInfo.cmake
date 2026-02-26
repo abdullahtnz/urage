@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/abdullahtnz/Desktop/uragedb/urage/cli/src/main.c" "CMakeFiles/urage_cli.dir/cli/src/main.c.o" "gcc" "CMakeFiles/urage_cli.dir/cli/src/main.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/cli/src/main.c" "CMakeFiles/urage_cli.dir/cli/src/main.c.o" "gcc" "CMakeFiles/urage_cli.dir/cli/src/main.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

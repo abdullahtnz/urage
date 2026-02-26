@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/urage_cli.dir/cli/src/main.c.o -o urage_cli  -Wl,-rpath,/home/abdullahtnz/Desktop/uragedb/urage/build: liburage.so 
+/usr/bin/cc CMakeFiles/urage_cli.dir/cli/src/main.c.o -o urage_cli  -Wl,-rpath,/home/abdullahtnz/Desktop/urage/build: liburage.so 

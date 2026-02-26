@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/btree.c" "CMakeFiles/urage.dir/core/src/btree.c.o" "gcc" "CMakeFiles/urage.dir/core/src/btree.c.o.d"
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/database.c" "CMakeFiles/urage.dir/core/src/database.c.o" "gcc" "CMakeFiles/urage.dir/core/src/database.c.o.d"
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/database_api.c" "CMakeFiles/urage.dir/core/src/database_api.c.o" "gcc" "CMakeFiles/urage.dir/core/src/database_api.c.o.d"
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/pager.c" "CMakeFiles/urage.dir/core/src/pager.c.o" "gcc" "CMakeFiles/urage.dir/core/src/pager.c.o.d"
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/storage.c" "CMakeFiles/urage.dir/core/src/storage.c.o" "gcc" "CMakeFiles/urage.dir/core/src/storage.c.o.d"
-  "/home/abdullahtnz/Desktop/uragedb/urage/core/src/type.c" "CMakeFiles/urage.dir/core/src/type.c.o" "gcc" "CMakeFiles/urage.dir/core/src/type.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/btree.c" "CMakeFiles/urage.dir/core/src/btree.c.o" "gcc" "CMakeFiles/urage.dir/core/src/btree.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/database.c" "CMakeFiles/urage.dir/core/src/database.c.o" "gcc" "CMakeFiles/urage.dir/core/src/database.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/database_api.c" "CMakeFiles/urage.dir/core/src/database_api.c.o" "gcc" "CMakeFiles/urage.dir/core/src/database_api.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/pager.c" "CMakeFiles/urage.dir/core/src/pager.c.o" "gcc" "CMakeFiles/urage.dir/core/src/pager.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/storage.c" "CMakeFiles/urage.dir/core/src/storage.c.o" "gcc" "CMakeFiles/urage.dir/core/src/storage.c.o.d"
+  "/home/abdullahtnz/Desktop/urage/core/src/type.c" "CMakeFiles/urage.dir/core/src/type.c.o" "gcc" "CMakeFiles/urage.dir/core/src/type.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

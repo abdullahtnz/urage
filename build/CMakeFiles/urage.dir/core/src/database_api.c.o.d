@@ -1,7 +1,7 @@
 CMakeFiles/urage.dir/core/src/database_api.c.o: \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/database_api.c \
+ /home/abdullahtnz/Desktop/urage/core/src/database_api.c \
  /usr/include/stdc-predef.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/urage.h \
+ /home/abdullahtnz/Desktop/urage/core/include/urage.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -19,13 +19,13 @@ CMakeFiles/urage.dir/core/src/database_api.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/type.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/database.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/constants.h \
+ /home/abdullahtnz/Desktop/urage/core/include/type.h \
+ /home/abdullahtnz/Desktop/urage/core/src/database.h \
+ /home/abdullahtnz/Desktop/urage/core/src/constants.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/btree.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/pager.h \
- /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /home/abdullahtnz/Desktop/urage/core/src/btree.h \
+ /home/abdullahtnz/Desktop/urage/core/src/pager.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
@@ -36,8 +36,8 @@ CMakeFiles/urage.dir/core/src/database_api.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/storage.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/type.h \
+ /home/abdullahtnz/Desktop/urage/core/src/storage.h \
+ /home/abdullahtnz/Desktop/urage/core/include/type.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/sys/types.h \

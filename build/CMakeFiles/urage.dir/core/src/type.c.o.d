@@ -1,7 +1,7 @@
 CMakeFiles/urage.dir/core/src/type.c.o: \
- /home/abdullahtnz/Desktop/uragedb/urage/core/src/type.c \
+ /home/abdullahtnz/Desktop/urage/core/src/type.c \
  /usr/include/stdc-predef.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/type.h \
+ /home/abdullahtnz/Desktop/urage/core/include/type.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -18,10 +18,10 @@ CMakeFiles/urage.dir/core/src/type.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/urage.h \
+ /home/abdullahtnz/Desktop/urage/core/include/urage.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /home/abdullahtnz/Desktop/uragedb/urage/core/include/type.h \
- /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /home/abdullahtnz/Desktop/urage/core/include/type.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
