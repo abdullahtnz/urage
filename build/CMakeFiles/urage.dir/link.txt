@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC -shared -Wl,-soname,liburage.so -o liburage.so CMakeFiles/urage.dir/core/src/database_api.c.o CMakeFiles/urage.dir/core/src/database.c.o CMakeFiles/urage.dir/core/src/btree.c.o CMakeFiles/urage.dir/core/src/storage.c.o CMakeFiles/urage.dir/core/src/pager.c.o CMakeFiles/urage.dir/core/src/type.c.o 
