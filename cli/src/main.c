@@ -269,7 +269,9 @@ if (strcmp(cmd, "define") == 0) {
                 size_t size = sizeof(buffer);
                 urage_result_t r = urage_get(db, key, buffer, &size);
                 if (r == URAGE_OK) {
-                    buffer[size] = '\0';
+                    // Clamp to valid index if returned size fills the buffer.
+                    size_t end = (size < sizeof(buffer)) ? size : (sizeof(buffer) - 1);
+                    buffer[end] = '\0'; // works
                     printf("%u -> %s\n", key, buffer);
                 } else if (r == URAGE_NOT_FOUND) {
                     printf("Key %u not found\n", key);
@@ -322,7 +324,9 @@ else if (strcmp(cmd, "gets") == 0) {
         size_t size = sizeof(buffer);
         urage_result_t r = urage_get_str(db, str_key, buffer, &size);
         if (r == URAGE_OK) {
-            buffer[size] = '\0';
+            // Clamp to valid index if returned size fills the buffer.
+            size_t end = (size < sizeof(buffer)) ? size : (sizeof(buffer) - 1);
+            buffer[end] = '\0';
             printf("'%s' -> %s\n", str_key, buffer);
         } else if (r == URAGE_NOT_FOUND) {
             printf("Key '%s' not found\n", str_key);
