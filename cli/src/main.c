@@ -4,28 +4,27 @@
 #include "stark.h"
 
 void print_help() {
-    // Colors
-    const char *PURPLE  = "\033[38;5;135m";
-    const char *PURPLE2 = "\033[38;5;141m";
-    const char *RESET   = "\033[0m";
-    const char *BOLD    = "\033[1m";
-    const char *CYAN    = "\033[36m";
-    const char *YELLOW  = "\033[33m";
+// Colors
+const char *PURPLE  = "\033[38;5;135m";
+const char *PURPLE2 = "\033[38;5;141m";
+const char *RESET   = "\033[0m";
+const char *BOLD    = "\033[1m";
+const char *CYAN    = "\033[36m";
+const char *YELLOW  = "\033[33m";
 
-    printf("\n%s", PURPLE);
-    printf("╔══════════════════════════════════════════════════════════╗\n");
-    printf("║                                                          ║\n");
-    printf("║        %s%s██╗   ██╗██████╗  █████╗  ██████╗ ███████╗%s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║        %s%s██║   ██║██╔══██╗██╔══██╗██╔════╝ ██╔════╝%s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║        %s%s██║   ██║██████╔╝███████║██║  ███╗█████╗  %s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║        %s%s██║   ██║██╔══██╗██╔══██║██║   ██║██╔══╝  %s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║        %s%s╚██████╔╝██║  ██║██║  ██║╚██████╔╝███████╗%s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║        %s%s ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝%s        ║\n", BOLD, PURPLE2, PURPLE);
-    printf("║                                                          ║\n");
-    printf("║                %sSTARK Database CLI%s                        ║\n", CYAN, PURPLE);
-    printf("║                                                          ║\n");
-    printf("╚══════════════════════════════════════════════════════════╝%s\n", RESET);
-
+printf("\n%s", PURPLE);
+printf("╔══════════════════════════════════════════════════════════╗\n");
+printf("║                                                          ║\n");
+printf("║   %s%s███████╗████████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ██████╗%s  ║\n", BOLD, PURPLE2, PURPLE);
+printf("║   %s%s██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗██╔══██╗%s ║\n", BOLD, PURPLE2, PURPLE);
+printf("║   %s%s███████╗   ██║   ███████║██████╔╝█████╔╝ ██║  ██║██████╔╝%s ║\n", BOLD, PURPLE2, PURPLE);
+printf("║   %s%s╚════██║   ██║   ██╔══██║██╔══██╗██╔═██╗ ██║  ██║██╔══██╗%s ║\n", BOLD, PURPLE2, PURPLE);
+printf("║   %s%s███████║   ██║   ██║  ██║██║  ██║██║  ██╗██████╔╝██████╔╝%s ║\n", BOLD, PURPLE2, PURPLE);
+printf("║   %s%s╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═════╝%s ║\n", BOLD, PURPLE2, PURPLE);
+printf("║                                                          ║\n");
+printf("║                %sSTARK Database CLI%s                        ║\n", CYAN, PURPLE);
+printf("║                                                          ║\n");
+printf("╚══════════════════════════════════════════════════════════╝%s\n", RESET);
     printf("\n%s┌──────────────── 📦 TYPE SYSTEM COMMANDS ────────────────┐%s\n", CYAN, RESET);
     printf("│  define <name> { <fields> }   - Define a new struct type │\n");
     printf("│  undefine <name>              - Delete a type definition │\n");
