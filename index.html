@@ -636,6 +636,10 @@
     background: none;
     border: none;
     padding: 0;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--border);
+    scroll-margin-top:initial;
   }
 
   /* CONTACT */
@@ -805,6 +809,8 @@
   <h2>Installation</h2>
   <p>One-time setup. Takes about 5 minutes.</p>
 
+  <a href="https://github.com/abdullahtnz/starkdb" class="contact-link" style="margin-bottom: 20px;">DOWNLOAD</a>
+
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('win')">🪟 Windows</button>
     <button class="tab-btn" onclick="switchTab('lin')">🐧 Linux</button>
@@ -812,15 +818,15 @@
 
   <div id="tab-win" class="tab-content active">
     <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># 1. Download STARK</span>
-<span class="comment"># Go to https://github.com/abdullahtnz/stark and download the ZIP file</span>
+<span class="comment"># <a href="https://github.com/abdullahtnz/starkdb" style="color:#e8e8f0; text-decoration: none;">Click here</a> and download the ZIP file</span>
 <span class="comment"># Extract it to your project folder C:\my_project</span>
-<span class="comment"># You must get a path like: C:\my_project\stark</span>
+<span class="comment"># You must get a path like: C:\my_project\starkdb</span>
 
 <span class="comment"># 2. Open Command Prompt as Administrator</span>
 <span class="comment"># Press Windows Key, type "cmd", right-click, "Run as Administrator"</span>
 
 <span class="comment"># 3. Go to STARK folder</span>
-<span class="cmd">cd C:\my_project\stark</span>
+<span class="cmd">cd C:\my_project\starkdb</span>
 <span class="cmd">mkdir build</span>
 <span class="cmd">cd build</span>
 
@@ -834,7 +840,7 @@
 <span class="cmd">copy ..\bindings\cpp\stark.hpp C:\mingw64\include\</span>
 <span class="cmd">copy ..\core\include\stark.h C:\mingw64\include\</span>
 
-<span class="comment"># ✅ DONE! One-time setup complete.</span></code></pre>
+<span class="comment"># DONE! One-time setup complete.</span></code></pre>
   </div>
 
   <div id="tab-lin" class="tab-content">
@@ -842,18 +848,18 @@
 <span class="cmd">cd Desktop/my_project</span>
 
 <span class="comment"># 2. Download and build</span>
-<span class="cmd">git clone https://github.com/abdullahtnz/stark.git</span>
-<span class="cmd">cd stark</span>
+<span class="cmd">git clone https://github.com/abdullahtnz/starkdb.git</span>
+<span class="cmd">cd starkdb</span>
 <span class="cmd">mkdir build</span>
 <span class="cmd">cd build</span>
 <span class="cmd">cmake .. -DBUILD_SHARED=ON</span>
 <span class="cmd">make</span>
 
-<span class="comment"># 3. Install (one time)</span>
+<span class="comment"># 3. Install</span>
 <span class="cmd">sudo make install</span>
 <span class="cmd">sudo ldconfig</span>
 
-<span class="comment"># ✅ DONE! One-time setup complete.</span></code></pre>
+<span class="comment"># DONE! One-time setup complete.</span></code></pre>
   </div>
 </section>
 
