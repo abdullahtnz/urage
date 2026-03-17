@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "icon" type = "image/png" href = "assets/starklogo.png">
-    <!-- For apple devices -->
-    <link rel = "apple-touch-icon" type = "image/png" href = "assets/starklogo.png"/>
-<title>STARKDB</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="website/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/starklogo.png">
+    <link rel="apple-touch-icon" type="image/png" href="assets/starklogo.png"/>
+
+    <title>STARKDB - Lightweight, Fast Database for Developers</title>
+    <meta name="description" content="StarkDB is a lightweight embedded database with full SQL support. Zero configuration, ACID compliant, perfect for desktop applications and local development.">
+    <meta name="keywords" content="embedded database, local database, lightweight database, SQL database, development database, desktop app database">
+    <meta name="author" content="StarkDB">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://starkdb.org">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://starkdb.org">
+    <meta property="og:title" content="StarkDB - Embedded Database for Developers">
+    <meta property="og:description" content="Zero configuration, ACID compliant, full SQL support. Perfect for desktop apps.">
+    <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://starkdb.org">
+    <meta property="twitter:title" content="StarkDB - Embedded Database">
+    <meta property="twitter:description" content="Zero config embedded database for developers">
+    <meta property="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="website/css/styles.css">
 </head>
 <body>
 
@@ -66,6 +87,8 @@
   <h2>Installation</h2>
   <p>One-time setup. Takes about 5 minutes.</p>
 
+  <a href="https://github.com/abdullahtnz/starkdb" class="contact-link" style="margin-bottom: 20px;">DOWNLOAD</a>
+
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('win')">🪟 Windows</button>
     <button class="tab-btn" onclick="switchTab('lin')">🐧 Linux</button>
@@ -73,15 +96,15 @@
 
   <div id="tab-win" class="tab-content active">
     <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># 1. Download STARK</span>
-<span class="comment"># Go to https://github.com/abdullahtnz/stark and download the ZIP file</span>
+<span class="comment"># <a href="https://github.com/abdullahtnz/starkdb" style="color:#e8e8f0; text-decoration: none;">Click here</a> and download the ZIP file</span>
 <span class="comment"># Extract it to your project folder C:\my_project</span>
-<span class="comment"># You must get a path like: C:\my_project\stark</span>
+<span class="comment"># You must get a path like: C:\my_project\starkdb</span>
 
 <span class="comment"># 2. Open Command Prompt as Administrator</span>
 <span class="comment"># Press Windows Key, type "cmd", right-click, "Run as Administrator"</span>
 
 <span class="comment"># 3. Go to STARK folder</span>
-<span class="cmd">cd C:\my_project\stark</span>
+<span class="cmd">cd C:\my_project\starkdb</span>
 <span class="cmd">mkdir build</span>
 <span class="cmd">cd build</span>
 
@@ -95,7 +118,7 @@
 <span class="cmd">copy ..\bindings\cpp\stark.hpp C:\mingw64\include\</span>
 <span class="cmd">copy ..\core\include\stark.h C:\mingw64\include\</span>
 
-<span class="comment"># ✅ DONE! One-time setup complete.</span></code></pre>
+<span class="comment"># DONE! One-time setup complete.</span></code></pre>
   </div>
 
   <div id="tab-lin" class="tab-content">
@@ -103,18 +126,18 @@
 <span class="cmd">cd Desktop/my_project</span>
 
 <span class="comment"># 2. Download and build</span>
-<span class="cmd">git clone https://github.com/abdullahtnz/stark.git</span>
-<span class="cmd">cd stark</span>
+<span class="cmd">git clone https://github.com/abdullahtnz/starkdb.git</span>
+<span class="cmd">cd starkdb</span>
 <span class="cmd">mkdir build</span>
 <span class="cmd">cd build</span>
 <span class="cmd">cmake .. -DBUILD_SHARED=ON</span>
 <span class="cmd">make</span>
 
-<span class="comment"># 3. Install (one time)</span>
+<span class="comment"># 3. Install</span>
 <span class="cmd">sudo make install</span>
 <span class="cmd">sudo ldconfig</span>
 
-<span class="comment"># ✅ DONE! One-time setup complete.</span></code></pre>
+<span class="comment"># DONE! One-time setup complete.</span></code></pre>
   </div>
 </section>
 
@@ -488,7 +511,7 @@ db.rollback();
 </div>
 
 <footer>
-  <p>STARK · Open Source · MIT License · github.com/abdullahtnz/stark</p>
+  <p>STARK · Open Source · MIT License · github.com/abdullahtnz/starkdb</p>
 </footer>
 
 <script src="website/js/main.js">  </script>
