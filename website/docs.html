@@ -1,37 +1,1225 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Documentation - STARKDB Lightweight Database</title>
-    <meta name="title" content="StarkDB Documentation - Learn How to Use StarkDB">
-    <meta name="description" content="Complete StarkDB documentation. Learn installation, basic queries, advanced features, transactions, indexing, and best practices for embedded database development.">
-    <meta name="keywords" content="starkdb documentation, database docs, embedded database guide, SQL documentation, database tutorial">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://starkdb.org/docs.html">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://starkdb.org/docs.html">
-    <meta property="og:title" content="StarkDB Documentation - Complete Guide">
-    <meta property="og:description" content="Learn how to use StarkDB with examples in JavaScript, Python, Go, and Rust.">
-    <meta property="og:image" content="https://starkdb.org/images/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://starkdb.org/docs.html">
-    <meta property="twitter:title" content="StarkDB Documentation">
-    <meta property="twitter:description" content="Complete StarkDB documentation with code examples.">
-    <meta property="twitter:image" content="https://starkdb.org/images/og-image.jpg">
-    
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="icon" type="image/png" href="../assets/starklogo.png">
+  <link rel="apple-touch-icon" href="../assets/starklogo.png">
+
+  <title>Documentation — STARKDB | CLI &amp; C++ API Reference</title>
+  <meta name="title" content="STARKDB Documentation — CLI & C++ API Reference">
+  <meta name="description" content="Complete STARKDB documentation covering CLI commands, C++ API, ACID properties, B-tree architecture, types, transactions, cursor iteration, result codes, and error handling.">
+  <meta name="keywords" content="starkdb documentation, starkdb docs, stark cli commands, stark c++ api, key-value database docs, b-tree database guide, embedded database reference, ACID transactions">
+  <meta name="author" content="Abdullah Novruzlu">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starkdb.org/docs.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starkdb.org/docs.html">
+  <meta property="og:title" content="STARKDB Documentation — CLI & C++ API Reference">
+  <meta property="og:description" content="Complete STARKDB documentation with CLI commands, C++ API reference, ACID transactions, and more.">
+  <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
+  <meta property="og:site_name" content="STARKDB">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://starkdb.org/docs.html">
+  <meta name="twitter:title" content="STARKDB Documentation — CLI & C++ API Reference">
+  <meta name="twitter:description" content="Complete STARKDB documentation with CLI commands, C++ API reference, ACID transactions, and more.">
+  <meta name="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "STARKDB Documentation — CLI & C++ API Reference",
+    "description": "Complete documentation for STARKDB covering CLI commands, C++ API, ACID properties, types, transactions, cursor iteration, and benchmarks.",
+    "url": "https://starkdb.org/docs.html",
+    "author": { "@type": "Person", "name": "Abdullah Novruzlu" },
+    "publisher": { "@type": "Organization", "name": "STARKDB" },
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-03-19"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+
+<!-- NAVBAR -->
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="STARKDB Home">
+      <img src="../assets/starklogo.png" alt="STARKDB logo" width="32" height="32">
+      STARK<span>DB</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="docs.html" class="active">Docs</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta nav-desktop">Star on GitHub</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="docs.html" class="active">Docs</a>
+  <a href="installation.html">Install</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta">Star on GitHub</a>
+</div>
+
+<!-- DOCS LAYOUT -->
+<div class="docs-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Getting Started</div>
+      <ul class="sidebar-links">
+        <li><a href="#introduction" class="active">Introduction</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#acid">ACID Properties</a></li>
+        <li><a href="#file-format">File Format</a></li>
+        <li><a href="installation.html">Installation</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">CLI Reference</div>
+      <ul class="sidebar-links">
+        <li><a href="#cli-basics">Getting Started</a></li>
+        <li><a href="#general-commands">General Commands</a></li>
+        <li><a href="#numeric-keys">Numeric Keys</a></li>
+        <li><a href="#string-keys">String Keys</a></li>
+        <li><a href="#types">Defining Types</a></li>
+        <li><a href="#typed-data">Typed Data</a></li>
+        <li><a href="#transactions">Transactions</a></li>
+        <li><a href="#complete-walkthrough">Complete Walkthrough</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">C++ API</div>
+      <ul class="sidebar-links">
+        <li><a href="#cpp-overview">Overview</a></li>
+        <li><a href="#cpp-lifecycle">Lifecycle</a></li>
+        <li><a href="#cpp-numeric">Numeric Keys</a></li>
+        <li><a href="#cpp-string">String Keys</a></li>
+        <li><a href="#cpp-typed">Typed Data</a></li>
+        <li><a href="#cpp-transactions">Transactions</a></li>
+        <li><a href="#cpp-cursor">Cursor / Iteration</a></li>
+        <li><a href="#cpp-utilities">Utilities &amp; Stats</a></li>
+        <li><a href="#cpp-errors">Error Handling</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">C API</div>
+      <ul class="sidebar-links">
+        <li><a href="#c-overview">C Function Reference</a></li>
+        <li><a href="#c-result-codes">Result Codes</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Resources</div>
+      <ul class="sidebar-links">
+        <li><a href="#benchmarks">Benchmarks</a></li>
+        <li><a href="#decision-guide">Decision Guide</a></li>
+        <li><a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub Repo</a></li>
+      </ul>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="docs-content">
+
+    <!-- ================================================================
+         INTRODUCTION
+         ================================================================ -->
+    <section id="introduction">
+      <div class="section-tag">Getting Started</div>
+      <h2>Introduction</h2>
+      <p>
+        STARK is a <em>key-value based, B-tree implemented</em> local database. It is specifically designed for mobile applications, desktop applications, and offline video games. With its <em>speed, lightness, and easy syntax</em>, STARK stands apart from other databases.
+      </p>
+      <p>
+        At its core, STARK is a C library with a C++ wrapper. It stores data on disk using a B-tree index and a flat data file, providing <em>sub-microsecond</em> lookups with a footprint of only 2–5 MB of RAM and under 1 MB on disk.
+      </p>
+      <div class="workflow">
+        <p>
+          STARK works with <em>.dat</em> and <em>.idx</em> files to save data. It supports <em>ACID properties</em>, ensuring safe and reliable data persistence. After building STARK, you can add data via either the <em>STARK CLI</em> or directly through <em>C++ code</em>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ARCHITECTURE
+         ================================================================ -->
+    <section id="architecture">
+      <div class="section-tag">Concepts</div>
+      <h2>Architecture</h2>
+      <p>
+        STARK uses a two-file storage model. When you open a database named <code>"mydb"</code>, two files are created:
+      </p>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>mydb.idx</code></td><td>B-tree index — stores keys and pointers to data. Provides fast O(log n) lookups.</td></tr>
+            <tr><td><code>mydb.dat</code></td><td>Data file — stores the actual values. Append-only with pointers from the index.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The B-tree index keeps keys sorted, so range scans and existence checks are fast. The data file uses an append-only strategy, which makes writes safe and crash-resilient.
+      </p>
+      <h3>Key Types</h3>
+      <p>STARK supports three kinds of keys, each stored and optimized separately:</p>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>Key Type</th><th>CLI Command Prefix</th><th>Use Case</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Numeric keys</strong> (uint32)</td><td><code>addn</code>, <code>getn</code>, <code>deln</code>, <code>existsn</code></td><td>Integer IDs — player IDs, item IDs, save slots</td></tr>
+            <tr><td><strong>String keys</strong></td><td><code>adds</code>, <code>gets</code>, <code>dels</code>, <code>exist_str</code></td><td>Text-based lookups — usernames, config keys</td></tr>
+            <tr><td><strong>Typed records</strong></td><td><code>add</code>, <code>get</code></td><td>Structured data — game entities with fields</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ACID PROPERTIES
+         ================================================================ -->
+    <section id="acid">
+      <div class="section-tag">Reliability</div>
+      <h2>ACID Properties</h2>
+      <p>
+        STARK guarantees <em>ACID compliance</em> — the four properties that ensure database reliability even in the event of crashes, power failures, or errors.
+      </p>
+
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Atomicity</h4>
+          <p style="font-size:.8rem;color:var(--text);margin:0 0 .5rem">
+            Every transaction is <strong>all-or-nothing</strong>. Either all operations within a <code>begin</code>/<code>commit</code> block succeed, or none of them take effect.
+          </p>
+          <p style="font-size:.72rem;margin:0"><em>Example:</em> A player level-up that updates HP, level, and gold — all three changes are applied together or rolled back together.</p>
+        </div>
+        <div class="api-card">
+          <h4>Consistency</h4>
+          <p style="font-size:.8rem;color:var(--text);margin:0 0 .5rem">
+            Data always moves from one <strong>valid state</strong> to another. The B-tree index and data file are always in sync — no orphaned records or broken pointers.
+          </p>
+          <p style="font-size:.72rem;margin:0"><em>How:</em> The .idx and .dat files are updated in a coordinated manner. If the index points to data, the data exists.</p>
+        </div>
+        <div class="api-card">
+          <h4>Isolation</h4>
+          <p style="font-size:.8rem;color:var(--text);margin:0 0 .5rem">
+            Transactions don't <strong>interfere with each other</strong>. Each transaction sees a consistent snapshot. In practice, STARK's single-process model naturally provides isolation.
+          </p>
+          <p style="font-size:.72rem;margin:0"><em>Note:</em> STARK is designed for single-process use. For multi-process access, use file locking or a server-based database.</p>
+        </div>
+        <div class="api-card">
+          <h4>Durability</h4>
+          <p style="font-size:.8rem;color:var(--text);margin:0 0 .5rem">
+            Once a <code>commit</code> completes, the data is <strong>permanently written to disk</strong>. Even if the system crashes or loses power, committed data survives.
+          </p>
+          <p style="font-size:.72rem;margin:0"><em>How:</em> Data is flushed to the .dat file before the commit returns. The <code>sync()</code> method forces an additional OS-level flush.</p>
+        </div>
+      </div>
+
+      <blockquote>
+        <p>
+          <strong>Why this matters for games:</strong> A player's progress must never be partially saved. If a power failure hits mid-save, STARK either fully applies the changes or leaves the database exactly as it was before.
+        </p>
+      </blockquote>
+    </section>
+
+    <!-- ================================================================
+         FILE FORMAT
+         ================================================================ -->
+    <section id="file-format">
+      <h3>File Format Details</h3>
+      <p>
+        Understanding the file format helps with backup strategies and debugging. You can safely back up both <code>.idx</code> and <code>.dat</code> files together. Never move or delete one without the other.
+      </p>
+      <div class="note">
+        <strong>Backup rule:</strong> Always copy both files together. The index (.idx) and data (.dat) files must remain in the same directory and have the same base name. Deleting either file will corrupt the database.
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CLI BASICS
+         ================================================================ -->
+    <section id="cli-basics">
+      <div class="section-tag">CLI Reference</div>
+      <h2>CLI Basics</h2>
+      <p>
+        The STARK CLI lets you interactively create and manage databases without writing any code. Open or create a database by running <code>stark_cli</code> with a filename.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Open or create a database in the current directory</span>
+<span class="cmd">stark_cli mygame</span>
+
+<span class="comment"># If stark_cli is in your PATH, you can run it from anywhere:</span>
+<span class="cmd">cd ~/my_project/data</span>
+<span class="cmd">stark_cli savefile</span>
+
+<span class="comment"># The prompt will change to show you're inside STARK:</span>
+<span class="kw">stark&gt;</span> <span class="cmd">help</span>
+<span class="comment"># Shows all available commands</span></code></pre>
+
+      <p>
+        When you first open a filename, STARK creates <code>mygame.idx</code> and <code>mygame.dat</code> in the current directory. If the files already exist, STARK opens and loads them.
+      </p>
+    </section>
+
+    <!-- ================================================================
+         GENERAL COMMANDS
+         ================================================================ -->
+    <section id="general-commands">
+      <h3>General Commands</h3>
+      <div class="cmd-section">
+        <div class="cmd-group-title">General</div>
+        <table class="cmd-table">
+          <tr><td>help</td><td>Display all available commands and their usage. Shows command syntax and descriptions.</td></tr>
+          <tr><td>exit</td><td>Save all pending changes to disk, close the database files, and quit the CLI.</td></tr>
+          <tr><td>stats</td><td>Show database statistics: total keys (numeric + string + typed), data file size, index file size, B-tree height, and page count.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="kw">stark&gt;</span> <span class="cmd">stats</span>
+<span class="comment"># Output:</span>
+<span class="comment">#   Keys:        15</span>
+<span class="comment">#   Data size:   2048 bytes</span>
+<span class="comment">#   Index pages: 1</span>
+<span class="comment">#   B-tree height: 2</span></code></pre>
+    </section>
+
+    <!-- ================================================================
+         NUMERIC KEYS
+         ================================================================ -->
+    <section id="numeric-keys">
+      <h3>Numeric Key Commands</h3>
+      <p>
+        Numeric keys are 32-bit unsigned integers (0 to 4,294,967,295). They are ideal for IDs — save slots, player IDs, inventory item IDs. Values can be strings or numbers, stored as raw bytes.
+      </p>
+      <div class="cmd-section">
+        <div class="cmd-group-title">Numeric Keys</div>
+        <table class="cmd-table">
+          <tr><td>addn &lt;key&gt; &lt;value&gt;</td><td>Insert or update a numeric key. If the key already exists, its value is overwritten. Value can be quoted strings or plain numbers.</td></tr>
+          <tr><td>getn &lt;key&gt;</td><td>Retrieve the value for a numeric key. Returns the value as a string, or "key not found" if the key doesn't exist.</td></tr>
+          <tr><td>deln &lt;key&gt;</td><td>Delete a numeric key and its associated value. Silently succeeds if the key doesn't exist.</td></tr>
+          <tr><td>existsn &lt;key&gt;</td><td>Check whether a numeric key exists. Returns <code>true</code> or <code>false</code>.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Store a save slot</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">0</span> <span class="str">"slot_empty"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">1</span> <span class="str">"Hero - Level 12"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">999</span> <span class="str">"1000 gold coins"</span>
+
+<span class="comment"># Read them back</span>
+<span class="kw">stark&gt;</span> <span class="cmd">getn</span> <span class="num">1</span>
+<span class="comment"># Output: Hero - Level 12</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">getn</span> <span class="num">5</span>
+<span class="comment"># Output: key not found</span>
+
+<span class="comment"># Check existence</span>
+<span class="kw">stark&gt;</span> <span class="cmd">existsn</span> <span class="num">1</span>
+<span class="comment"># Output: true</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">existsn</span> <span class="num">5</span>
+<span class="comment"># Output: false</span>
+
+<span class="comment"># Delete a key</span>
+<span class="kw">stark&gt;</span> <span class="cmd">deln</span> <span class="num">0</span>
+<span class="kw">stark&gt;</span> <span class="cmd">existsn</span> <span class="num">0</span>
+<span class="comment"># Output: false</span>
+
+<span class="comment"># Overwrite a key (same as add)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">1</span> <span class="str">"Hero - Level 15"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">getn</span> <span class="num">1</span>
+<span class="comment"># Output: Hero - Level 15</span></code></pre>
+    </section>
+
+    <!-- ================================================================
+         STRING KEYS
+         ================================================================ -->
+    <section id="string-keys">
+      <h3>String Key Commands</h3>
+      <p>
+        String keys let you use text-based lookups. The string is hashed internally for storage, but you interact with it by its original text. This is useful for config keys, usernames, or named settings.
+      </p>
+      <div class="cmd-section">
+        <div class="cmd-group-title strings">String Keys</div>
+        <table class="cmd-table strings">
+          <tr><td>adds &lt;key&gt; &lt;value&gt;</td><td>Insert or update a string key. Both key and value are quoted strings. Overwrites if the key already exists.</td></tr>
+          <tr><td>gets &lt;key&gt;</td><td>Retrieve the value for a string key. Returns the value or "key not found".</td></tr>
+          <tr><td>dels &lt;key&gt;</td><td>Delete a string key and its value. Silently succeeds if the key doesn't exist.</td></tr>
+          <tr><td>exist_str &lt;key&gt;</td><td>Check whether a string key exists. Returns <code>true</code> or <code>false</code>.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Store settings</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"username"</span> <span class="str">"player_one"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"theme"</span> <span class="str">"dark"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"music_volume"</span> <span class="str">"85"</span>
+
+<span class="comment"># Read them back</span>
+<span class="kw">stark&gt;</span> <span class="cmd">gets</span> <span class="str">"username"</span>
+<span class="comment"># Output: player_one</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">gets</span> <span class="str">"fullscreen"</span>
+<span class="comment"># Output: key not found</span>
+
+<span class="comment"># Check and delete</span>
+<span class="kw">stark&gt;</span> <span class="cmd">exist_str</span> <span class="str">"theme"</span>
+<span class="comment"># Output: true</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">dels</span> <span class="str">"theme"</span></code></pre>
+    </section>
+
+    <!-- ================================================================
+         TYPES
+         ================================================================ -->
+    <section id="types">
+      <h3>Type Commands — User-Defined Schemas</h3>
+      <p>
+        Types let you define structured records — like a lightweight schema. Each type has named fields with fixed data types. This is how you store game entities, inventory items, or any multi-field data.
+      </p>
+
+      <h4>Supported Field Types</h4>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>Type Keyword</th><th>C/C++ Constant</th><th>Size</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>int</code></td><td><code>TYPE_INT</code> (1)</td><td>4 bytes</td><td>Signed 32-bit integer</td></tr>
+            <tr><td><code>string(N)</code></td><td><code>TYPE_STRING</code> (2)</td><td>N+1 bytes</td><td>N = max characters. Includes null terminator. Use <code>string(32)</code>, <code>string(255)</code>, etc.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>String sizing matters:</strong> When you define <code>name string(32)</code>, STARK allocates exactly 33 bytes per record (32 chars + null terminator). Smaller sizes save memory and disk space. Use <code>string(255)</code> as a safe default if you're unsure.
+      </div>
+
+      <div class="cmd-section">
+        <div class="cmd-group-title types">Type Commands</div>
+        <table class="cmd-table types">
+          <tr><td>define &lt;name&gt; { field1 type1 field2 type2 ... }</td><td>Define a new type. Each field has a name and a type (<code>int</code> or <code>string(N)</code>). If the type already exists, this fails.</td></tr>
+          <tr><td>undefine &lt;name&gt;</td><td>Delete a type definition and <strong>all records</strong> of that type. This is irreversible.</td></tr>
+          <tr><td>desc &lt;name&gt;</td><td>Show a type's definition — all fields with their names, types, and sizes.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Define a player type</span>
+<span class="kw">stark&gt;</span> <span class="cmd">define</span> player {
+    name    <span class="str">string(32)</span>
+    hp      <span class="str">int</span>
+    level   <span class="str">int</span>
+    gold    <span class="str">int</span>
+    class   <span class="str">string(16)</span>
+}
+
+<span class="comment"># View the type definition</span>
+<span class="kw">stark&gt;</span> <span class="cmd">desc</span> player
+<span class="comment"># Output:</span>
+<span class="comment">#   Type: player</span>
+<span class="comment">#   Fields:</span>
+<span class="comment">#     name   = string(32)</span>
+<span class="comment">#     hp     = int</span>
+<span class="comment">#     level  = int</span>
+<span class="comment">#     gold   = int</span>
+<span class="comment">#     class  = string(16)</span>
+
+<span class="comment"># Define an item type</span>
+<span class="kw">stark&gt;</span> <span class="cmd">define</span> item {
+    name     <span class="str">string(64)</span>
+    damage   <span class="str">int</span>
+    type     <span class="str">string(16)</span>
+}
+
+<span class="comment"># Remove a type (deletes all records too)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">undefine</span> item</code></pre>
+    </section>
+
+    <!-- ================================================================
+         TYPED DATA
+         ================================================================ -->
+    <section id="typed-data">
+      <h3>Typed Data — Adding and Retrieving Records</h3>
+      <p>
+        Once a type is defined, you can add, retrieve, and update records. Each record is identified by a numeric key and contains field values in <code>field=value</code> format.
+      </p>
+      <div class="cmd-section">
+        <div class="cmd-group-title types">Typed Data</div>
+        <table class="cmd-table types">
+          <tr><td>add &lt;type&gt; &lt;key&gt; field1=val1 field2=val2 ...</td><td>Add or update a record. The type must exist. String values should be quoted. Omitting a field sets it to zero/empty.</td></tr>
+          <tr><td>get &lt;type&gt; &lt;key&gt;</td><td>Retrieve a record. Returns all field values in <code>field=value</code> format, or "type:key not found".</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Add players (keys 1 and 2)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> name=<span class="str">"Hero"</span> hp=<span class="num">100</span> level=<span class="num">5</span> gold=<span class="num">250</span> class=<span class="str">"warrior"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">2</span> name=<span class="str">"Mage"</span> hp=<span class="num">80</span> level=<span class="num">7</span> gold=<span class="num">450</span> class=<span class="str">"wizard"</span>
+
+<span class="comment"># Get a player</span>
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> player <span class="num">1</span>
+<span class="comment"># Output: name="Hero" hp=100 level=5 gold=250 class="warrior"</span>
+
+<span class="comment"># Non-existent record</span>
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> player <span class="num">3</span>
+<span class="comment"># Output: player:3 not found</span>
+
+<span class="comment"># Update a record (same key overwrites all fields)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> name=<span class="str">"Hero"</span> hp=<span class="num">85</span> level=<span class="num">6</span> gold=<span class="num">300</span> class=<span class="str">"warrior"</span>
+
+<span class="comment"># Verify update</span>
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> player <span class="num">1</span>
+<span class="comment"># Output: name="Hero" hp=85 level=6 gold=300 class="warrior"</span>
+
+<span class="comment"># Check stats after adding data</span>
+<span class="kw">stark&gt;</span> <span class="cmd">stats</span>
+<span class="comment"># Output shows: total keys, data file size, index size, etc.</span></code></pre>
+
+      <div class="note">
+        <strong>Partial updates:</strong> When you call <code>add</code> with an existing key, <strong>all fields are overwritten</strong>. STARK does not support updating a single field — you must provide the complete record each time.
+      </div>
+    </section>
+
+    <!-- ================================================================
+         TRANSACTIONS
+         ================================================================ -->
+    <section id="transactions">
+      <h3>Transactions</h3>
+      <p>
+        Transactions group multiple operations into a single atomic unit. This is critical when you need to update multiple values that must stay consistent — like a player winning a fight and gaining both XP and loot.
+      </p>
+      <div class="cmd-section">
+        <div class="cmd-group-title transactions">Transaction Commands</div>
+        <table class="cmd-table transactions">
+          <tr><td>begin</td><td>Start a new transaction. All subsequent writes (addn, adds, add) are buffered until commit or rollback.</td></tr>
+          <tr><td>commit</td><td>Commit the transaction — all buffered changes are written to disk atomically. If the system crashes during commit, the database rolls back to the pre-transaction state.</td></tr>
+          <tr><td>rollback</td><td>Discard all changes made since <code>begin</code>. The database reverts to exactly the state it was in before the transaction started.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Setup a player</span>
+<span class="kw">stark&gt;</span> <span class="cmd">define</span> player { id <span class="str">int</span> hp <span class="str">int</span> level <span class="str">int</span> gold <span class="str">int</span> }
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> id=<span class="num">123</span> hp=<span class="num">100</span> level=<span class="num">0</span> gold=<span class="num">50</span>
+
+<span class="comment"># === SUCCESSFUL TRANSACTION ===</span>
+<span class="comment"># Player wins a fight — update atomically</span>
+<span class="kw">stark&gt;</span> <span class="cmd">begin</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> id=<span class="num">123</span> hp=<span class="num">45</span> level=<span class="num">1</span> gold=<span class="num">150</span>
+<span class="kw">stark&gt;</span> <span class="cmd">commit</span>
+<span class="comment"># All changes saved atomically</span>
+
+<span class="comment"># === ROLLBACK EXAMPLE ===</span>
+<span class="comment"># Suppose a transaction goes wrong</span>
+<span class="kw">stark&gt;</span> <span class="cmd">begin</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> id=<span class="num">123</span> hp=<span class="num">0</span> level=<span class="num">0</span> gold=<span class="num">0</span>
+<span class="kw">stark&gt;</span> <span class="cmd">rollback</span>
+<span class="comment"># Player data restored to: hp=45, level=1, gold=150</span>
+
+<span class="comment"># Verify rollback worked</span>
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> player <span class="num">1</span>
+<span class="comment"># Output: id=123 hp=45 level=1 gold=150</span></code></pre>
+
+      <blockquote>
+        <p>
+          <strong>Best practice:</strong> Always wrap related changes in a transaction. If you're updating a player's HP, XP, and inventory after a battle, put all three updates in one <code>begin</code>/<code>commit</code> block.
+        </p>
+      </blockquote>
+    </section>
+
+    <!-- ================================================================
+         COMPLETE WALKTHROUGH
+         ================================================================ -->
+    <section id="complete-walkthrough">
+      <div class="section-tag">Tutorial</div>
+      <h2>Complete Walkthrough — Building a Game Save System</h2>
+      <p>
+        This walkthrough shows how to use STARK to build a complete game save system. Follow along step by step.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># ================================================</span>
+<span class="comment"># STEP 1: Open the database</span>
+<span class="comment"># ================================================</span>
+<span class="cmd">stark_cli mygame</span>
+<span class="kw">stark&gt;</span>
+
+<span class="comment"># ================================================</span>
+<span class="comment"># STEP 2: Define types for your game</span>
+<span class="comment"># ================================================</span>
+
+<span class="comment"># Define the player type</span>
+<span class="kw">stark&gt;</span> <span class="cmd">define</span> player {
+    name    <span class="str">string(32)</span>
+    hp      <span class="str">int</span>
+    max_hp  <span class="str">int</span>
+    level   <span class="str">int</span>
+    xp      <span class="str">int</span>
+    gold    <span class="str">int</span>
+    class   <span class="str">string(16)</span>
+}
+
+<span class="comment"># Define the inventory type</span>
+<span class="kw">stark&gt;</span> <span class="cmd">define</span> item {
+    name     <span class="str">string(64)</span>
+    damage   <span class="str">int</span>
+    defense  <span class="str">int</span>
+    type     <span class="str">string(16)</span>
+    <span class="comment"># type: weapon, armor, potion, quest</span>
+}
+
+<span class="comment"># ================================================</span>
+<span class="comment"># STEP 3: Store save data</span>
+<span class="comment"># ================================================</span>
+
+<span class="comment"># Save the main character (key = 1)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> name=<span class="str">"Aldric"</span> hp=<span class="num">120</span> max_hp=<span class="num">120</span> level=<span class="num">8</span> xp=<span class="num">4500</span> gold=<span class="num">1250</span> class=<span class="str">"warrior"</span>
+
+<span class="comment"># Save inventory items (keys 1-3)</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> item <span class="num">1</span> name=<span class="str">"Iron Sword"</span> damage=<span class="num">15</span> defense=<span class="num">0</span> type=<span class="str">"weapon"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> item <span class="num">2</span> name=<span class="str">"Steel Shield"</span> damage=<span class="num">0</span> defense=<span class="num">20</span> type=<span class="str">"armor"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> item <span class="num">3</span> name=<span class="str">"Health Potion"</span> damage=<span class="num">0</span> defense=<span class="num">0</span> type=<span class="str">"potion"</span>
+
+<span class="comment"># Store save metadata using string keys</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"save_version"</span> <span class="str">"1.0"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"play_time"</span> <span class="str">"04:23:15"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"chapter"</span> <span class="str">"3"</span>
+
+<span class="comment"># Use numeric keys for save slots</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">1</span> <span class="str">"Aldric - Level 8 - Chapter 3"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">2</span> <span class="str">"Empty Slot"</span>
+<span class="kw">stark&gt;</span> <span class="cmd">addn</span> <span class="num">3</span> <span class="str">"Empty Slot"</span>
+
+<span class="comment"># ================================================</span>
+<span class="comment"># STEP 4: Use a transaction for battle updates</span>
+<span class="comment"># ================================================</span>
+
+<span class="comment"># Player fights a dragon — wins but takes damage</span>
+<span class="kw">stark&gt;</span> <span class="cmd">begin</span>
+
+<span class="comment"># Player takes 40 damage</span>
+<span class="kw">stark&gt;</span> <span class="cmd">add</span> player <span class="num">1</span> name=<span class="str">"Aldric"</span> hp=<span class="num">80</span> max_hp=<span class="num">120</span> level=<span class="num">8</span> xp=<span class="num">4500</span> gold=<span class="num">1250</span> class=<span class="str">"warrior"</span>
+
+<span class="comment"># Player gains 500 XP and 200 gold from the kill</span>
+<span class="kw">stark&gt;</span> <span class="cmd">adds</span> <span class="str">"dragon_kills"</span> <span class="str">"1"</span>
+
+<span class="comment"># Commit — all changes saved together</span>
+<span class="kw">stark&gt;</span> <span class="cmd">commit</span>
+
+<span class="comment"># ================================================</span>
+<span class="comment"># STEP 5: Verify your save data</span>
+<span class="comment"># ================================================</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> player <span class="num">1</span>
+<span class="comment"># Output: name="Aldric" hp=80 max_hp=120 level=8 xp=4500 gold=1250 class="warrior"</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">get</span> item <span class="num">1</span>
+<span class="comment"># Output: name="Iron Sword" damage=15 defense=0 type="weapon"</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">gets</span> <span class="str">"chapter"</span>
+<span class="comment"># Output: 3</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">desc</span> player
+<span class="comment"># Shows all player fields with types</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">stats</span>
+<span class="comment"># Shows total keys, file sizes, B-tree info</span>
+
+<span class="comment"># ================================================</span>
+<span class="comment"># STEP 6: Save and exit</span>
+<span class="comment"># ================================================</span>
+
+<span class="kw">stark&gt;</span> <span class="cmd">exit</span>
+<span class="comment"># All data persisted to mygame.idx and mygame.dat</span></code></pre>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================================================================
+         C++ API — OVERVIEW
+         ================================================================ -->
+    <section id="cpp-overview">
+      <div class="section-tag">C++ API</div>
+      <h2>Using STARK in C++</h2>
+      <p>
+        The C++ wrapper (<code>stark::Database</code>) provides a modern, exception-safe interface over the C API. After installation, just <code>#include &lt;stark.hpp&gt;</code> and link with <code>-lstark</code>.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment">// main.cpp</span>
+<span class="kw">#include</span> <span class="str">&lt;stark.hpp&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+
+<span class="kw">int</span> main() {
+    <span class="comment">// Open database (creates "save.idx" and "save.dat")</span>
+    stark::Database db(<span class="str">"save"</span>);
+
+    <span class="comment">// Save data</span>
+    db.add(<span class="num">1</span>, <span class="str">"Hero"</span>);
+    db.add(<span class="num">2</span>, <span class="str">"100 HP"</span>);
+
+    <span class="comment">// Load data</span>
+    std::cout &lt;&lt; db.get(<span class="num">1</span>) &lt;&lt; std::endl;  <span class="comment">// Prints: Hero</span>
+
+    <span class="comment">// Get with default value</span>
+    std::string val = db.get(<span class="num">99</span>, <span class="str">"not found"</span>);  <span class="comment">// "not found"</span>
+
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+    </section>
+
+    <!-- ================================================================
+         C++ API — LIFECYCLE
+         ================================================================ -->
+    <section id="cpp-lifecycle">
+      <h3>Lifecycle — Opening and Closing</h3>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Constructor</h4>
+          <pre><code><span class="comment">// Open existing or create new</span>
+stark::Database db(<span class="str">"mydb"</span>);
+
+<span class="comment">// Throws stark::Error if
+// the database cannot be opened</span></code></pre>
+        </div>
+        <div class="api-card">
+          <h4>Movable, Not Copyable</h4>
+          <pre><code><span class="comment">// Move is supported</span>
+stark::Database db2 = std::move(db);
+
+<span class="comment">// Copy is deleted</span>
+<span class="comment">// Database db3 = db2; // ERROR</span>
+
+<span class="comment">// Destructor auto-syncs
+// and closes the database</span></code></pre>
+        </div>
+      </div>
+      <p>
+        The database automatically calls <code>sync()</code> and <code>stark_close()</code> in the destructor. You don't need to manually close it. If you need explicit control, call <code>db.sync()</code> to flush changes to disk.
+      </p>
+    </section>
+
+    <!-- ================================================================
+         C++ API — NUMERIC KEYS
+         ================================================================ -->
+    <section id="cpp-numeric">
+      <h3>Numeric Key Methods</h3>
+      <p>All numeric key operations throw <code>stark::Error</code> on failure. <code>get()</code> returns an empty string if the key is not found.</p>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Add &amp; Get</h4>
+          <pre><code><span class="comment">// Insert or update (key is uint32_t)</span>
+db.add(<span class="num">1</span>, <span class="str">"Hero"</span>);
+db.add(<span class="num">42</span>, <span class="str">"anything"</span>);
+
+<span class="comment">// Get — returns "" if not found</span>
+<span class="kw">std::string</span> v = db.get(<span class="num">1</span>);
+
+<span class="comment">// Get with default fallback</span>
+<span class="kw">std::string</span> v2 = db.get(<span class="num">99</span>,
+    <span class="str">"default value"</span>);</code></pre>
+        </div>
+        <div class="api-card">
+          <h4>Remove &amp; Exists</h4>
+          <pre><code><span class="comment">// Remove — returns true if deleted,
+// false if key didn't exist</span>
+<span class="kw">bool</span> removed = db.remove(<span class="num">1</span>);
+
+<span class="comment">// Check existence</span>
+<span class="kw">if</span> (db.exists(<span class="num">1</span>)) {
+    <span class="comment">// key exists</span>
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         C++ API — STRING KEYS
+         ================================================================ -->
+    <section id="cpp-string">
+      <h3>String Key Methods</h3>
+      <p>
+        String keys use <code>std::string</code> arguments. Internally, keys are hashed, but you interact with them using the original text.
+      </p>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Put &amp; Get</h4>
+          <pre><code><span class="comment">// Insert or update</span>
+db.put_str(<span class="str">"username"</span>, <span class="str">"player_one"</span>);
+db.put_str(<span class="str">"theme"</span>, <span class="str">"dark"</span>);
+
+<span class="comment">// Get — returns "" if not found</span>
+<span class="kw">std::string</span> v = db.get_str(
+    <span class="str">"username"</span>);</code></pre>
+        </div>
+        <div class="api-card">
+          <h4>Remove &amp; Exists</h4>
+          <pre><code><span class="comment">// Remove by string key</span>
+<span class="kw">bool</span> ok = db.remove_str(
+    <span class="str">"username"</span>);
+
+<span class="comment">// Check existence</span>
+<span class="kw">if</span> (db.exists_str(<span class="str">"theme"</span>)) {
+    <span class="comment">// key exists</span>
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         C++ API — TYPED DATA
+         ================================================================ -->
+    <section id="cpp-typed">
+      <h3>Typed Data Methods</h3>
+      <p>
+        Define schemas with <code>stark::Field</code> objects, then add and retrieve structured records. Field type constants: <code>TYPE_INT</code> (1) and <code>TYPE_STRING</code> (2).
+      </p>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Define &amp; Undefine</h4>
+          <pre><code><span class="kw">using</span> <span class="kw">namespace</span> stark;
+
+<span class="comment">// Define a type with fields</span>
+db.define_type(<span class="str">"player"</span>, {
+    Field(<span class="str">"name"</span>,  TYPE_STRING, <span class="num">32</span>),
+    Field(<span class="str">"hp"</span>,    TYPE_INT),
+    Field(<span class="str">"level"</span>, TYPE_INT),
+});
+
+<span class="comment">// Remove a type (returns
+// true if it existed)</span>
+<span class="kw">bool</span> removed = db.undefine_type(
+    <span class="str">"player"</span>);</code></pre>
+        </div>
+        <div class="api-card">
+          <h4>Add, Get &amp; Describe</h4>
+          <pre><code><span class="comment">// Add a typed record</span>
+db.add_typed(<span class="str">"player"</span>, <span class="num">1</span>,
+    <span class="str">"name=Hero hp=100 level=5"</span>);
+
+<span class="comment">// Get typed record (returns "" if
+// not found)</span>
+<span class="kw">std::string</span> v = db.get_typed(
+    <span class="str">"player"</span>, <span class="num">1</span>);
+
+<span class="comment">// Describe type (returns vector
+// of Field objects)</span>
+<span class="kw">auto</span> fields = db.describe_type(
+    <span class="str">"player"</span>);</code></pre>
+        </div>
+      </div>
+      <blockquote>
+        <p>
+          <strong>Field struct:</strong> <code>Field(name, type, size)</code> — <code>name</code> is the field name, <code>type</code> is <code>TYPE_INT</code> or <code>TYPE_STRING</code>, <code>size</code> is the string buffer size (default 4, ignored for int).
+        </p>
+      </blockquote>
+    </section>
+
+    <!-- ================================================================
+         C++ API — TRANSACTIONS
+         ================================================================ -->
+    <section id="cpp-transactions">
+      <h3>Transaction Methods</h3>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Transaction Control</h4>
+          <pre><code><span class="comment">// Start transaction</span>
+db.begin();
+
+<span class="comment">// Make changes</span>
+db.add(<span class="num">1</span>, <span class="str">"updated"</span>);
+db.put_str(<span class="str">"key"</span>, <span class="str">"val"</span>);
+
+<span class="comment">// Commit (atomic write)</span>
+db.commit();
+
+<span class="comment">// Or rollback (discard)</span>
+<span class="comment">// db.rollback();
+
+<span class="comment">// Check if in transaction</span>
+<span class="kw">if</span> (db.in_transaction()) {
+    <span class="comment">// inside begin/commit block</span>
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         C++ API — CURSOR / ITERATION
+         ================================================================ -->
+    <section id="cpp-cursor">
+      <h3>Cursor / Iteration (C API)</h3>
+      <p>
+        The C API provides a <strong>cursor</strong> for iterating over all keys in order. The C++ wrapper does not yet expose this directly, but you can use it via the C functions by linking to <code>stark.h</code>.
+      </p>
+
+      <h4>Cursor Functions</h4>
+      <div class="cmd-section">
+        <div class="cmd-group-title utilities">Cursor API</div>
+        <table class="cmd-table utilities">
+          <tr><td><code>stark_cursor_create(db)</code></td><td>Create a new cursor for the database. Returns a cursor handle or NULL on error.</td></tr>
+          <tr><td><code>stark_cursor_first(cur)</code></td><td>Move cursor to the first (smallest) key. Returns <code>STARK_OK</code> or <code>STARK_NOT_FOUND</code> if empty.</td></tr>
+          <tr><td><code>stark_cursor_last(cur)</code></td><td>Move cursor to the last (largest) key. Returns <code>STARK_OK</code> or <code>STARK_NOT_FOUND</code> if empty.</td></tr>
+          <tr><td><code>stark_cursor_next(cur)</code></td><td>Move cursor to the next key. Returns <code>STARK_OK</code> or <code>STARK_NOT_FOUND</code> if at end.</td></tr>
+          <tr><td><code>stark_cursor_prev(cur)</code></td><td>Move cursor to the previous key. Returns <code>STARK_OK</code> or <code>STARK_NOT_FOUND</code> if at start.</td></tr>
+          <tr><td><code>stark_cursor_get(cur, &key, buf, &size)</code></td><td>Get the current key and value at the cursor position.</td></tr>
+          <tr><td><code>stark_cursor_destroy(cur)</code></td><td>Free the cursor. Always call this when done.</td></tr>
+        </table>
+      </div>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment">// C API cursor example</span>
+<span class="kw">#include</span> <span class="str">&lt;stark.h&gt;</span>
+
+stark_db_t* db = stark_open(<span class="str">"mydb"</span>, <span class="num">0</span>);
+stark_cursor_t* cur = stark_cursor_create(db);
+
+<span class="kw">if</span> (stark_cursor_first(cur) == STARK_OK) {
+    <span class="kw">do</span> {
+        uint32_t key;
+        <span class="kw">char</span> buf[<span class="num">4096</span>];
+        size_t size = <span class="kw">sizeof</span>(buf);
+        stark_cursor_get(cur, &key, buf, &size);
+        printf(<span class="str">"key=%u value=%s\n"</span>, key, buf);
+    } <span class="kw">while</span> (stark_cursor_next(cur) == STARK_OK);
+}
+
+stark_cursor_destroy(cur);
+stark_close(db);</code></pre>
+
+      <div class="note">
+        <strong>Cursor ordering:</strong> Keys are iterated in ascending B-tree order. Numeric keys are sorted numerically. The cursor works across all key types in the database.
+      </div>
+    </section>
+
+    <!-- ================================================================
+         C++ API — UTILITIES & STATS
+         ================================================================ -->
+    <section id="cpp-utilities">
+      <h3>Utility Methods &amp; Statistics</h3>
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Database Stats</h4>
+          <pre><code><span class="comment">// Returns a Stats struct:</span>
+<span class="comment">//   .keys     - total key count</span>
+<span class="comment">//   .height   - B-tree height</span>
+<span class="comment">//   .data_size - data file bytes</span>
+<span class="comment">//   .pages    - B-tree page count</span>
+<span class="kw">auto</span> s = db.stats();
+std::cout &lt;&lt; <span class="str">"Keys: "</span>
+    &lt;&lt; s.keys &lt;&lt; std::endl;
+std::cout &lt;&lt; <span class="str">"Height: "</span>
+    &lt;&lt; s.height &lt;&lt; std::endl;
+std::cout &lt;&lt; <span class="str">"Data: "</span>
+    &lt;&lt; s.data_size &lt;&lt; <span class="str">" bytes"</span>
+    &lt;&lt; std::endl;
+std::cout &lt;&lt; <span class="str">"Pages: "</span>
+    &lt;&lt; s.pages &lt;&lt; std::endl;</code></pre>
+        </div>
+        <div class="api-card">
+          <h4>Sync &amp; Error</h4>
+          <pre><code><span class="comment">// Force flush to disk
+// (also done in destructor)</span>
+db.sync();
+
+<span class="comment">// Get last error message
+// (empty string if none)</span>
+<span class="kw">std::string</span> err =
+    db.get_last_error();
+<span class="kw">if</span> (!err.empty()) {
+    std::cerr &lt;&lt; err;
+}</code></pre>
+        </div>
+      </div>
+      <blockquote>
+        <p>The <code>Stats</code> struct provides: <code>keys</code> (uint64), <code>height</code> (uint32), <code>data_size</code> (uint64 bytes), and <code>pages</code> (uint32 B-tree pages).</p>
+      </blockquote>
+    </section>
+
+    <!-- ================================================================
+         C++ API — ERROR HANDLING
+         ================================================================ -->
+    <section id="cpp-errors">
+      <h3>Error Handling — Exceptions</h3>
+      <p>
+        The C++ wrapper uses exceptions for error handling. All exceptions inherit from <code>std::runtime_error</code>.
+      </p>
+
+      <div class="api-grid">
+        <div class="api-card">
+          <h4>Exception Types</h4>
+          <pre><code><span class="comment">// Base exception</span>
+stark::Error e(<span class="str">"message"</span>);
+
+<span class="comment">// Key not found</span>
+stark::NotFound nf;
+stark::NotFound nf2(<span class="str">"key_name"</span>);
+
+<span class="comment">// Both inherit from
+// std::runtime_error</span>
+<span class="kw">try</span> {
+    db.get(<span class="num">999</span>);
+} <span class="kw">catch</span> (<span class="kw">const</span> std::exception& e) {
+    std::cerr &lt;&lt; e.what();
+}</code></pre>
+        </div>
+        <div class="api-card">
+          <h4>When Exceptions Throw</h4>
+          <pre><code><span class="comment">// db.add()    - on write failure</span>
+<span class="comment">// db.get()    - on read failure</span>
+<span class="comment">//   (NOT for missing keys)</span>
+<span class="comment">// db.remove() - on failure</span>
+<span class="comment">//   (returns false if missing)</span>
+<span class="comment">// db.define_type() - if exists</span>
+<span class="comment">// db.begin()  - if already in</span>
+<span class="comment">//   transaction</span>
+<span class="comment">// Constructor - if can't open</span></code></pre>
+        </div>
+      </div>
+      <p>
+        Note: <code>get()</code> does <strong>not</strong> throw for missing keys — it returns an empty string. Use <code>exists()</code> or the default-value overload <code>get(key, default)</code> to distinguish.
+      </p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================================================================
+         C API — OVERVIEW
+         ================================================================ -->
+    <section id="c-overview">
+      <div class="section-tag">C API Reference</div>
+      <h2>C Function Reference</h2>
+      <p>
+        STARK is written in C. The C API is the lowest-level interface, used by language bindings (like the C++ wrapper) or directly in C projects. All functions use the <code>stark_</code> prefix.
+      </p>
+
+      <h4>Lifecycle</h4>
+      <div class="cmd-section">
+        <table class="cmd-table">
+          <tr><td><code>stark_open(path, flags)</code></td><td>Open or create a database. Returns a handle or NULL. <code>flags</code> is reserved for future use (pass 0).</td></tr>
+          <tr><td><code>stark_close(db)</code></td><td>Close the database and flush all changes. Always call this when done.</td></tr>
+        </table>
+      </div>
+
+      <h4>Numeric Key CRUD</h4>
+      <div class="cmd-section">
+        <table class="cmd-table">
+          <tr><td><code>stark_put(db, key, value, size)</code></td><td>Insert or update a key-value pair. Returns <code>stark_result_t</code>.</td></tr>
+          <tr><td><code>stark_add(db, key, value, size)</code></td><td>Same as <code>stark_put</code> — insert or update.</td></tr>
+          <tr><td><code>stark_get(db, key, buf, &size)</code></td><td>Get value by key. <code>buf</code> is output buffer, <code>size</code> is in/out. Returns <code>STARK_NOT_FOUND</code> if missing.</td></tr>
+          <tr><td><code>stark_delete(db, key)</code></td><td>Delete a key. Returns <code>STARK_OK</code> or <code>STARK_NOT_FOUND</code>.</td></tr>
+          <tr><td><code>stark_exists(db, key)</code></td><td>Check existence. Returns 1 or 0.</td></tr>
+        </table>
+      </div>
+
+      <h4>String Key CRUD</h4>
+      <div class="cmd-section">
+        <table class="cmd-table strings">
+          <tr><td><code>stark_put_str(db, key, value, size)</code></td><td>Insert or update with string key.</td></tr>
+          <tr><td><code>stark_get_str(db, key, buf, &size)</code></td><td>Get value by string key.</td></tr>
+          <tr><td><code>stark_del_str(db, key)</code></td><td>Delete by string key.</td></tr>
+          <tr><td><code>stark_exists_str(db, key)</code></td><td>Check string key existence. Returns 1 or 0.</td></tr>
+        </table>
+      </div>
+
+      <h4>Type System</h4>
+      <div class="cmd-section">
+        <table class="cmd-table types">
+          <tr><td><code>stark_define_type(db, name, fields, count)</code></td><td>Define a type with an array of <code>FieldDef</code> structs.</td></tr>
+          <tr><td><code>stark_undefine_type(db, name)</code></td><td>Delete a type and all its records.</td></tr>
+          <tr><td><code>stark_get_type(db, name)</code></td><td>Get type info. Returns <code>TypeDef*</code> (caller must <code>free()</code>), or NULL.</td></tr>
+          <tr><td><code>stark_list_types(db, &names, &count)</code></td><td>List all type names. Caller must free the array.</td></tr>
+          <tr><td><code>stark_add_typed(db, type, key, field_values)</code></td><td>Add a typed record. <code>field_values</code> is a string like <code>"name=Hero hp=100"</code>.</td></tr>
+          <tr><td><code>stark_get_typed(db, type, key, buf, size)</code></td><td>Get typed record as a formatted string.</td></tr>
+        </table>
+      </div>
+
+      <h4>Cursor / Iteration</h4>
+      <div class="cmd-section">
+        <table class="cmd-table utilities">
+          <tr><td><code>stark_cursor_create(db)</code></td><td>Create a cursor. Returns handle or NULL.</td></tr>
+          <tr><td><code>stark_cursor_first(cur)</code></td><td>Move to first key.</td></tr>
+          <tr><td><code>stark_cursor_last(cur)</code></td><td>Move to last key.</td></tr>
+          <tr><td><code>stark_cursor_next(cur)</code></td><td>Move to next key.</td></tr>
+          <tr><td><code>stark_cursor_prev(cur)</code></td><td>Move to previous key.</td></tr>
+          <tr><td><code>stark_cursor_get(cur, &key, buf, &size)</code></td><td>Get current key and value.</td></tr>
+          <tr><td><code>stark_cursor_destroy(cur)</code></td><td>Free the cursor.</td></tr>
+        </table>
+      </div>
+
+      <h4>Transactions</h4>
+      <div class="cmd-section">
+        <table class="cmd-table transactions">
+          <tr><td><code>stark_begin(db)</code></td><td>Start a transaction.</td></tr>
+          <tr><td><code>stark_commit(db)</code></td><td>Commit transaction changes.</td></tr>
+          <tr><td><code>stark_rollback(db)</code></td><td>Rollback transaction changes.</td></tr>
+          <tr><td><code>stark_in_transaction(db)</code></td><td>Check if in a transaction. Returns 1 or 0.</td></tr>
+        </table>
+      </div>
+
+      <h4>Utilities</h4>
+      <div class="cmd-section">
+        <table class="cmd-table">
+          <tr><td><code>stark_stats(db, &stats)</code></td><td>Fill a <code>stark_stats_t</code> struct with database metrics.</td></tr>
+          <tr><td><code>stark_sync(db)</code></td><td>Flush all changes to disk.</td></tr>
+          <tr><td><code>stark_error(db)</code></td><td>Get last error string. Do not free the returned pointer.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         C API — RESULT CODES
+         ================================================================ -->
+    <section id="c-result-codes">
+      <h3>Result Codes</h3>
+      <p>
+        All C API functions that can fail return a <code>stark_result_t</code> enum. The C++ wrapper converts these to exceptions.
+      </p>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>Code</th><th>Value</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td class="check"><code>STARK_OK</code></td><td>0</td><td>Operation succeeded</td></tr>
+            <tr><td><code>STARK_ERROR</code></td><td>-1</td><td>General error — type already exists, invalid state, etc.</td></tr>
+            <tr><td><code>STARK_NOT_FOUND</code></td><td>-2</td><td>Key or type not found</td></tr>
+            <tr><td><code>STARK_FULL</code></td><td>-3</td><td>Database is full (rare — usually indicates disk space)</td></tr>
+            <tr><td><code>STARK_IO_ERROR</code></td><td>-4</td><td>Disk I/O failure — check permissions and disk space</td></tr>
+            <tr><td><code>STARK_INVALID_ARG</code></td><td>-5</td><td>Invalid argument passed — null pointer, bad field definition, etc.</td></tr>
+            <tr><td><code>STARK_CLOSED</code></td><td>-6</td><td>Operation on a closed database handle</td></tr>
+            <tr><td><code>STARK_MEMORY_ERROR</code></td><td>-7</td><td>Out of memory — allocation failed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        When using the C++ wrapper, check <code>db.get_last_error()</code> after operations, or catch <code>stark::Error</code> exceptions. The C API result codes are preserved as the exception message where applicable.
+      </p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================================================================
+         BENCHMARKS
+         ================================================================ -->
+    <section id="benchmarks">
+      <div class="section-tag">Performance</div>
+      <h2>Benchmarks</h2>
+
+      <h3>Speed Comparison</h3>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>Operation</th><th>STARK</th><th>SQLite</th><th>Redis</th><th>MongoDB</th></tr></thead>
+          <tbody>
+            <tr><td>Write 1 record</td><td class="check">0.8 µs</td><td>5 µs</td><td>1 µs</td><td>50 µs</td></tr>
+            <tr><td>Read 1 record</td><td class="check">0.5 µs</td><td>3 µs</td><td>0.8 µs</td><td>30 µs</td></tr>
+            <tr><td>Write 1,000 records</td><td class="check">0.8 ms</td><td>5 ms</td><td>1 ms</td><td>50 ms</td></tr>
+            <tr><td>Read 1,000 records</td><td class="check">0.5 ms</td><td>3 ms</td><td>0.8 ms</td><td>30 ms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2rem">File Size per 1,000 Records</h3>
+      <div class="table-section">
+        <table>
+          <thead><tr><th>Database</th><th>File Size</th></tr></thead>
+          <tbody>
+            <tr><td>STARK</td><td class="check">~100 KB</td></tr>
+            <tr><td>SQLite</td><td>~150 KB</td></tr>
+            <tr><td>LevelDB</td><td>~120 KB</td></tr>
+            <tr><td>MongoDB</td><td>~2 MB</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================================================================
+         DECISION GUIDE
+         ================================================================ -->
+    <section id="decision-guide">
+      <div class="section-tag">Guidance</div>
+      <h2>Should You Use STARK?</h2>
+      <div class="cards-grid">
+        <div class="card pro">
+          <div class="card-title">Choose STARK when...</div>
+          <div class="card-row">
+            <div class="card-icon">⚡</div>
+            <div class="card-text"><strong>You need simplicity</strong><span>1 line to save, 1 line to load</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">🪶</div>
+            <div class="card-text"><strong>You need a tiny footprint</strong><span>2 MB memory, &lt; 1 MB file size</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">🚀</div>
+            <div class="card-text"><strong>You need raw speed</strong><span>0.5 µs reads — effectively instant</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">🎮</div>
+            <div class="card-text"><strong>You're making a game</strong><span>Built specifically for game developers</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">🆓</div>
+            <div class="card-text"><strong>You want it free</strong><span>Open source, MIT license</span></div>
+          </div>
+        </div>
+        <div class="card con">
+          <div class="card-title">Skip STARK when...</div>
+          <div class="card-row">
+            <div class="card-icon">🗃️</div>
+            <div class="card-text"><strong>You need SQL queries</strong><span>Use SQLite instead</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">🌐</div>
+            <div class="card-text"><strong>You need network access</strong><span>Use Redis or MongoDB instead</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">👥</div>
+            <div class="card-text"><strong>You have multiple users</strong><span>Use PostgreSQL instead</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">📊</div>
+            <div class="card-text"><strong>You're doing big data analytics</strong><span>Use MongoDB instead</span></div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon">📱</div>
+            <div class="card-text"><strong>You need complex queries on mobile</strong><span>Use SQLite instead</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /docs-content -->
+</div><!-- /docs-layout -->
+
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar navigation">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+  </svg>
+</button>
+
+<footer>
+  <p>STARK · Open Source · MIT License</p>
+  <div class="footer-links">
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+    <a href="docs.html">Docs</a>
+    <a href="installation.html">Install</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

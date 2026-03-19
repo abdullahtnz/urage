@@ -1,35 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Install STARKDB - Windows, macOS, Linux | Package Managers</title>
-    <meta name="title" content="Install StarkDB - Complete Installation Guide">
-    <meta name="description" content="Install StarkDB in 3 simple steps. Package managers: npm install starkdb, pip install starkdb, brew install starkdb, apt install starkdb, winget install starkdb. Windows, macOS, Linux guides.">
-    <meta name="keywords" content="install starkdb, starkdb installation, npm starkdb, pip starkdb, brew starkdb, apt starkdb, winget starkdb, database installation">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://starkdb.org/install.html">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://starkdb.org/install.html">
-    <meta property="og:title" content="Install StarkDB - All Platforms">
-    <meta property="og:description" content="Install StarkDB on Windows, macOS, or Linux using your favorite package manager.">
-    <meta property="og:image" content="https://starkdb.org/images/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://starkdb.org/install.html">
-    <meta property="twitter:title" content="Install StarkDB">
-    <meta property="twitter:description" content="Quick installation guide for all platforms.">
-    <meta property="twitter:image" content="https://starkdb.org/images/og-image.jpg">
-    
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="icon" type="image/png" href="../assets/starklogo.png">
+  <link rel="apple-touch-icon" href="../assets/starklogo.png">
+
+  <title>Install STARKDB — Windows &amp; Linux Setup Guide</title>
+  <meta name="title" content="Install STARKDB — Windows & Linux Setup Guide">
+  <meta name="description" content="Install STARKDB in 5 minutes. Step-by-step build instructions for Windows (MinGW) and Linux (GCC). CMake-based build system, one-time setup.">
+  <meta name="keywords" content="install starkdb, starkdb installation, build starkdb, cmake starkdb, mingw starkdb, linux starkdb, compile starkdb, setup starkdb">
+  <meta name="author" content="Abdullah Novruzlu">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starkdb.org/installation.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starkdb.org/installation.html">
+  <meta property="og:title" content="Install STARKDB — Windows & Linux Setup Guide">
+  <meta property="og:description" content="Install STARKDB in 5 minutes. Build instructions for Windows and Linux.">
+  <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
+  <meta property="og:site_name" content="STARKDB">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://starkdb.org/installation.html">
+  <meta name="twitter:title" content="Install STARKDB — Windows & Linux Setup Guide">
+  <meta name="twitter:description" content="Install STARKDB in 5 minutes. Build instructions for Windows and Linux.">
+  <meta name="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Install STARKDB",
+    "description": "Step-by-step guide to build and install the STARKDB embedded database on Windows or Linux.",
+    "totalTime": "PT5M",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+    "tool": [
+      { "@type": "HowToTool", "name": "CMake" },
+      { "@type": "HowToTool", "name": "MinGW (Windows) or GCC (Linux)" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "name": "Download", "text": "Clone or download the STARKDB repository from GitHub." },
+      { "@type": "HowToStep", "name": "Build", "text": "Create a build directory and run CMake to generate makefiles, then build." },
+      { "@type": "HowToStep", "name": "Install", "text": "Copy the library and headers to your system include/lib paths." }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+
+<!-- NAVBAR -->
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="STARKDB Home">
+      <img src="../assets/starklogo.png" alt="STARKDB logo" width="32" height="32">
+      STARK<span>DB</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="installation.html" class="active">Install</a></li>
+      <li><a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta nav-desktop">Star on GitHub</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="docs.html">Docs</a>
+  <a href="installation.html" class="active">Install</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta">Star on GitHub</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-tag">Setup</div>
+  <h1>Installation</h1>
+  <p>One-time setup. Takes about 5 minutes. After building, you can use STARK via CLI or C++ code.</p>
+</div>
+
+<!-- PREREQUISITES -->
+<section>
+  <h2>Prerequisites</h2>
+  <p>Before installing, make sure you have the following tools available on your system.</p>
+
+  <div class="cards-grid">
+    <div class="card pro">
+      <div class="card-title">Windows</div>
+      <div class="card-row">
+        <div class="card-icon">🔧</div>
+        <div class="card-text"><strong>CMake 3.10+</strong><span>Build system generator</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">⚙️</div>
+        <div class="card-text"><strong>MinGW-w64</strong><span>GCC compiler for Windows</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">💻</div>
+        <div class="card-text"><strong>Command Prompt</strong><span>Run as Administrator</span></div>
+      </div>
+    </div>
+    <div class="card pro">
+      <div class="card-title">Linux</div>
+      <div class="card-row">
+        <div class="card-icon">🔧</div>
+        <div class="card-text"><strong>CMake 3.10+</strong><span>Build system generator</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">⚙️</div>
+        <div class="card-text"><strong>GCC / G++</strong><span>C/C++ compiler</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">🐧</div>
+        <div class="card-text"><strong>Make</strong><span>Build automation tool</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INSTALL STEPS -->
+<section>
+  <h2>Install STARKDB</h2>
+  <p>Choose your platform and follow the steps below.</p>
+
+  <a href="https://github.com/abdullahtnz/starkdb" class="contact-link" style="margin-bottom:24px;display:inline-flex" target="_blank" rel="noopener">DOWNLOAD FROM GITHUB</a>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('win')" role="tab" aria-selected="true" aria-controls="tab-win">Windows</button>
+    <button class="tab-btn" onclick="switchTab('lin')" role="tab" aria-selected="false" aria-controls="tab-lin">Linux</button>
+  </div>
+
+  <!-- WINDOWS -->
+  <div id="tab-win" class="tab-content active" role="tabpanel">
+    <h3 style="margin-top:2rem">Step 1 — Download</h3>
+    <p>Go to the <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub repository</a> and download the ZIP file. Extract it to your project folder.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># You should end up with a path like:</span>
+<span class="cmd">C:\my_project\starkdb</span></code></pre>
+
+    <h3 style="margin-top:2rem">Step 2 — Open Terminal</h3>
+    <p>Press <strong>Windows Key</strong>, type <code>cmd</code>, right-click, and select <strong>"Run as Administrator"</strong>.</p>
+
+    <h3 style="margin-top:2rem">Step 3 — Navigate &amp; Build</h3>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Go to STARK folder</span>
+<span class="cmd">cd C:\my_project\starkdb</span>
+<span class="cmd">mkdir build</span>
+<span class="cmd">cd build</span>
+
+<span class="comment"># Generate makefiles and build</span>
+<span class="cmd">cmake .. -G "MinGW Makefiles" -DBUILD_SHARED=ON</span>
+<span class="cmd">mingw32-make</span></code></pre>
+
+    <h3 style="margin-top:2rem">Step 4 — Install</h3>
+    <p>Copy the built library and headers to your MinGW directories so any project can use STARK.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Copy library files</span>
+<span class="cmd">copy libstark.dll C:\mingw64\bin\</span>
+<span class="cmd">copy libstark.dll.a C:\mingw64\lib\</span>
+
+<span class="comment"># Copy headers</span>
+<span class="cmd">copy ..\bindings\cpp\stark.hpp C:\mingw64\include\</span>
+<span class="cmd">copy ..\core\include\stark.h C:\mingw64\include\</span></code></pre>
+
+    <div class="note">This is a one-time setup. After installation, you can use <code>#include &lt;stark.hpp&gt;</code> in any C++ project on your system.</div>
+  </div>
+
+  <!-- LINUX -->
+  <div id="tab-lin" class="tab-content" role="tabpanel">
+    <h3 style="margin-top:2rem">Step 1 — Clone the Repository</h3>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="cmd">cd ~/Desktop/my_project</span>
+<span class="cmd">git clone https://github.com/abdullahtnz/starkdb.git</span>
+<span class="cmd">cd starkdb</span></code></pre>
+
+    <h3 style="margin-top:2rem">Step 2 — Build</h3>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="cmd">mkdir build</span>
+<span class="cmd">cd build</span>
+<span class="cmd">cmake .. -DBUILD_SHARED=ON</span>
+<span class="cmd">make</span></code></pre>
+
+    <h3 style="margin-top:2rem">Step 3 — Install System-Wide</h3>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="cmd">sudo make install</span>
+<span class="cmd">sudo ldconfig</span></code></pre>
+
+    <div class="note">This is a one-time setup. <code>make install</code> copies the library to <code>/usr/local/lib</code> and headers to <code>/usr/local/include</code>. <code>ldconfig</code> refreshes the shared library cache.</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- VERIFY -->
+<section>
+  <h2>Verify Installation</h2>
+  <p>After installation, create a quick test file to make sure everything works.</p>
+
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment">// test.cpp</span>
+<span class="kw">#include</span> <span class="str">&lt;stark.hpp&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+
+<span class="kw">int</span> main() {
+    stark::Database db(<span class="str">"test_db"</span>);
+    db.add(<span class="num">1</span>, <span class="str">"Hello STARK!"</span>);
+    std::cout &lt;&lt; db.get(<span class="num">1</span>) &lt;&lt; std::endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+
+  <p>Compile and run:</p>
+
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Linux</span>
+<span class="cmd">g++ test.cpp -lstark -o test</span>
+<span class="cmd">./test</span>
+
+<span class="comment"># Windows (MinGW)</span>
+<span class="cmd">g++ test.cpp -lstark -o test.exe</span>
+<span class="cmd">test.exe</span></code></pre>
+
+  <p>If you see <code>Hello STARK!</code> printed to the console, installation was successful.</p>
+</section>
+
+<hr class="divider">
+
+<!-- USAGE QUICK START -->
+<section>
+  <h2>Quick Start</h2>
+  <p>Once installed, you can use STARK in two ways:</p>
+
+  <div class="cards-grid">
+    <div class="card pro">
+      <div class="card-title">Option A — CLI</div>
+      <div class="card-row">
+        <div class="card-icon">💻</div>
+        <div class="card-text"><strong>Open a database from terminal</strong><span>stark_cli mygame</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">📝</div>
+        <div class="card-text"><strong>Use interactive commands</strong><span>addn, getn, define, add, get...</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">💾</div>
+        <div class="card-text"><strong>Save and exit</strong><span>Type "exit" to persist changes</span></div>
+      </div>
+    </div>
+    <div class="card pro">
+      <div class="card-title">Option B — C++ API</div>
+      <div class="card-row">
+        <div class="card-icon">📦</div>
+        <div class="card-text"><strong>Include the header</strong><span>#include &lt;stark.hpp&gt;</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">🔗</div>
+        <div class="card-text"><strong>Link the library</strong><span>-lstark flag during compile</span></div>
+      </div>
+      <div class="card-row">
+        <div class="card-icon">🚀</div>
+        <div class="card-text"><strong>Start coding</strong><span>stark::Database db("save");</span></div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote>
+    <p>Read the full <a href="docs.html">documentation</a> for detailed CLI command reference and C++ API methods.</p>
+  </blockquote>
+</section>
+
+<hr class="divider">
+
+<!-- TROUBLESHOOTING -->
+<section>
+  <h2>Troubleshooting</h2>
+
+  <h3>CMake not found</h3>
+  <p>Make sure CMake is installed and added to your PATH. Download from <a href="https://cmake.org/download/" target="_blank" rel="noopener">cmake.org</a>.</p>
+
+  <h3>MinGW not found (Windows)</h3>
+  <p>Install MinGW-w64 from <a href="https://www.mingw-w64.org/" target="_blank" rel="noopener">mingw-w64.org</a> and add <code>C:\mingw64\bin</code> to your system PATH.</p>
+
+  <h3>Library not found at runtime</h3>
+  <p>On Linux, run <code>sudo ldconfig</code> to refresh the shared library cache. On Windows, make sure <code>libstark.dll</code> is in a directory listed in your PATH (e.g., <code>C:\mingw64\bin</code>).</p>
+
+  <h3>Compilation errors</h3>
+  <p>Ensure you're linking with <code>-lstark</code> and the headers are in your compiler's include path. If you installed with <code>sudo make install</code>, they should be in <code>/usr/local/include</code> and <code>/usr/local/lib</code>.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" aria-labelledby="contact-heading">
+  <div class="section-tag" style="justify-content:center;margin-bottom:1rem">Help</div>
+  <h2 id="contact-heading">Still Having Issues?</h2>
+  <p>Feel free to reach out for help or report issues.</p>
+  <a href="mailto:novruzluabdullah03@gmail.com" class="contact-link">
+    <span>✉</span>
+    novruzluabdullah03@gmail.com
+  </a>
+</section>
+
+<footer>
+  <p>STARK · Open Source · MIT License</p>
+  <div class="footer-links">
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+    <a href="docs.html">Docs</a>
+    <a href="installation.html">Install</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

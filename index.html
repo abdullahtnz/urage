@@ -1,42 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/starklogo.png">
-    <link rel="apple-touch-icon" type="image/png" href="assets/starklogo.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STARKDB - Lightweight, Fast Database for Developers</title>
-    <meta name="description" content="StarkDB is a lightweight embedded database with full SQL support. Zero configuration, ACID compliant, perfect for desktop applications and local development.">
-    <meta name="keywords" content="embedded database, local database, lightweight database, SQL database, development database, desktop app database">
-    <meta name="author" content="StarkDB">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://starkdb.org">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://starkdb.org">
-    <meta property="og:title" content="StarkDB - Embedded Database for Developers">
-    <meta property="og:description" content="Zero configuration, ACID compliant, full SQL support. Perfect for desktop apps.">
-    <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://starkdb.org">
-    <meta property="twitter:title" content="StarkDB - Embedded Database">
-    <meta property="twitter:description" content="Zero config embedded database for developers">
-    <meta property="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/starklogo.png">
+  <link rel="apple-touch-icon" href="assets/starklogo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="website/css/styles.css">
+  <!-- Primary Meta Tags -->
+  <title>STARKDB — Lightweight, Fast B-Tree Key-Value Database</title>
+  <meta name="title" content="STARKDB — Lightweight, Fast B-Tree Key-Value Database">
+  <meta name="description" content="STARKDB is a key-value based, B-tree implemented local database designed for games, mobile apps, and desktop applications. ACID compliant, 0.5 µs reads, under 1 MB file size.">
+  <meta name="keywords" content="starkdb, stark database, key-value database, b-tree database, embedded database, lightweight database, local database, game database, offline database, C database, C++ database">
+  <meta name="author" content="Abdullah Novruzlu">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starkdb.org">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starkdb.org">
+  <meta property="og:title" content="STARKDB — Lightweight, Fast B-Tree Key-Value Database">
+  <meta property="og:description" content="ACID compliant, 0.5 µs reads, under 1 MB file size. Built for games, mobile apps, and desktop applications.">
+  <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
+  <meta property="og:site_name" content="STARKDB">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://starkdb.org">
+  <meta name="twitter:title" content="STARKDB — Lightweight, Fast B-Tree Key-Value Database">
+  <meta name="twitter:description" content="ACID compliant, 0.5 µs reads, under 1 MB file size. Built for games, mobile apps, and desktop applications.">
+  <meta name="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "STARKDB",
+    "applicationCategory": "DatabaseApplication",
+    "operatingSystem": "Windows, Linux",
+    "description": "A key-value based, B-tree implemented local database designed for games, mobile apps, and desktop applications.",
+    "softwareVersion": "1.1.0",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Person",
+      "name": "Abdullah Novruzlu"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://github.com/abdullahtnz/starkdb",
+    "codeRepository": "https://github.com/abdullahtnz/starkdb"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "STARKDB",
+    "url": "https://starkdb.org",
+    "description": "Official website for STARKDB — a lightweight, fast B-tree key-value database."
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="website/css/styles.css">
 </head>
 <body>
 
+<!-- NAVBAR -->
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="nav-container">
+    <a href="/" class="logo" aria-label="STARKDB Home">
+      <img src="assets/starklogo.png" alt="STARKDB logo" width="32" height="32">
+      STARK<span>DB</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="website/docs.html">Docs</a></li>
+      <li><a href="website/installation.html">Install</a></li>
+      <li><a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta nav-desktop">Star on GitHub</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+  <a href="/" class="active">Home</a>
+  <a href="website/docs.html">Docs</a>
+  <a href="website/installation.html">Install</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta">Star on GitHub</a>
+</div>
+
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
 
   <div class="badge">v1.1.0 · Open Source · MIT License</div>
 
@@ -45,60 +119,66 @@
   </h1>
 
   <p class="hero-subtitle">
-    A key-value based, B-tree implemented <em style="color:var(--accent)">local database</em><br>
-    designed for games, mobile apps & desktop applications.<br>
-    <span style="color:#4a4a6a">Fast. Light. Simple.</span>
+    A key-value based, B-tree implemented <em>local database</em><br>
+    designed for games, mobile apps &amp; desktop applications.<br>
+    <span class="dim">Fast. Light. Simple.</span>
   </p>
 
   <div class="hero-pills">
     <span class="pill accent">B-Tree Engine</span>
     <span class="pill accent2">ACID Compliant</span>
     <span class="pill accent3">0.5 µs Reads</span>
-    <span class="pill">< 1 MB File Size</span>
+    <span class="pill">&lt; 1 MB File Size</span>
     <span class="pill">2–5 MB RAM</span>
     <span class="pill">CLI + C++ API</span>
   </div>
 
-  <div class="scroll-indicator">
+  <div class="hero-ctas">
+    <a href="website/installation.html" class="btn btn-primary">Get Started</a>
+    <a href="website/docs.html" class="btn btn-ghost">Read the Docs</a>
+  </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
     <span>scroll</span>
     <div class="scroll-line"></div>
   </div>
-</div>
+</header>
 
 <!-- WORKFLOW -->
-<section>
+<main>
+<section aria-labelledby="overview-heading">
   <div class="section-tag">Overview</div>
-  <h2>How STARK Works</h2>
+  <h2 id="overview-heading">How STARK Works</h2>
   <div class="workflow">
     <p>
       STARK works with <em>.dat</em> and <em>.idx</em> files to save data. It supports <em>ACID properties</em>, ensuring safe and reliable data persistence. After building STARK, users can add data via either the <em>STARK CLI</em> or directly through <em>C++ code</em>.
     </p>
   </div>
   <blockquote>
-    <p>As mentioned above, you can use STARK via the CLI or embed it in your C++ project.</p>
+    <p>You can use STARK via the CLI or embed it in your C++ project.</p>
   </blockquote>
 </section>
 
 <hr class="divider">
 
 <!-- INSTALLATION -->
-<section>
+<section aria-labelledby="install-heading">
   <div class="section-tag">Setup</div>
-  <h2>Installation</h2>
+  <h2 id="install-heading">Installation</h2>
   <p>One-time setup. Takes about 5 minutes.</p>
 
-  <a href="https://github.com/abdullahtnz/starkdb" class="contact-link" style="margin-bottom: 20px;">DOWNLOAD</a>
+  <a href="https://github.com/abdullahtnz/starkdb" class="contact-link" style="margin-bottom:20px;display:inline-flex" target="_blank" rel="noopener">DOWNLOAD</a>
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('win')">🪟 Windows</button>
-    <button class="tab-btn" onclick="switchTab('lin')">🐧 Linux</button>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('win')" role="tab" aria-selected="true" aria-controls="tab-win">Windows</button>
+    <button class="tab-btn" onclick="switchTab('lin')" role="tab" aria-selected="false" aria-controls="tab-lin">Linux</button>
   </div>
 
-  <div id="tab-win" class="tab-content active">
-    <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># 1. Download STARK</span>
-<span class="comment"># <a href="https://github.com/abdullahtnz/starkdb" style="color:#e8e8f0; text-decoration: none;">Click here</a> and download the ZIP file</span>
-<span class="comment"># Extract it to your project folder C:\my_project</span>
-<span class="comment"># You must get a path like: C:\my_project\starkdb</span>
+  <div id="tab-win" class="tab-content active" role="tabpanel">
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># 1. Download STARK</span>
+<span class="comment"># <a href="https://github.com/abdullahtnz/starkdb" style="color:#e8e8f0;text-decoration:none">Click here</a> and download the ZIP file</span>
+<span class="comment"># Extract to your project folder C:\my_project</span>
+<span class="comment"># Path should be: C:\my_project\starkdb</span>
 
 <span class="comment"># 2. Open Command Prompt as Administrator</span>
 <span class="comment"># Press Windows Key, type "cmd", right-click, "Run as Administrator"</span>
@@ -121,8 +201,8 @@
 <span class="comment"># DONE! One-time setup complete.</span></code></pre>
   </div>
 
-  <div id="tab-lin" class="tab-content">
-    <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># 1. Open Terminal (Ctrl+Alt+T) and go to your project folder</span>
+  <div id="tab-lin" class="tab-content" role="tabpanel">
+    <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># 1. Open Terminal (Ctrl+Alt+T) and go to your project folder</span>
 <span class="cmd">cd Desktop/my_project</span>
 
 <span class="comment"># 2. Download and build</span>
@@ -144,13 +224,13 @@
 <hr class="divider">
 
 <!-- CLI USAGE -->
-<section>
+<section aria-labelledby="cli-heading">
   <div class="section-tag">CLI</div>
-  <h2>Using STARK in CLI</h2>
+  <h2 id="cli-heading">Using STARK in CLI</h2>
 
   <div class="note">Works identically on Windows and Linux.</div>
 
-  <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># Go to stark/build folder</span>
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># Go to stark/build folder</span>
 <span class="cmd">cd C:\my_project\build</span>
 <span class="cmd">./stark_cli filename</span>   <span class="comment"># Creates or opens a file in the build folder</span>
 
@@ -159,33 +239,28 @@
 <span class="cmd">stark_cli filename</span></code></pre>
 
   <div class="cmd-section">
-
-    <!-- General -->
     <div class="cmd-group-title">General Commands</div>
     <table class="cmd-table">
       <tr><td>help</td><td>See all possible commands and usage</td></tr>
       <tr><td>exit</td><td>Save and quit</td></tr>
     </table>
 
-    <!-- Numeric -->
     <div class="cmd-group-title">Numeric Key Commands</div>
     <table class="cmd-table">
-      <tr><td>addn key value</td><td>Add a numeric key with value (value can be string or num)</td></tr>
+      <tr><td>addn key value</td><td>Add a numeric key with value (string or num)</td></tr>
       <tr><td>getn key</td><td>Get a numeric key and its value</td></tr>
       <tr><td>deln key</td><td>Delete a numeric key and its value</td></tr>
       <tr><td>existsn key</td><td>Check if a numeric key exists</td></tr>
     </table>
 
-    <!-- String -->
     <div class="cmd-group-title strings">String Key Commands</div>
     <table class="cmd-table strings">
-      <tr><td>adds key value</td><td>Add a string key with value (value can be string or num)</td></tr>
+      <tr><td>adds key value</td><td>Add a string key with value (string or num)</td></tr>
       <tr><td>gets key</td><td>Get a string key and its value</td></tr>
       <tr><td>dels key</td><td>Delete a string key and its value</td></tr>
       <tr><td>exist_str key</td><td>Check if a string key exists</td></tr>
     </table>
 
-    <!-- Types -->
     <div class="cmd-group-title types">Type Commands</div>
     <table class="cmd-table types">
       <tr><td>define name { ... }</td><td>Define a new user-defined type with typed fields</td></tr>
@@ -195,28 +270,26 @@
       <tr><td>get typename key</td><td>Get a typed record by key</td></tr>
     </table>
 
-    <!-- Transactions -->
     <div class="cmd-group-title transactions">Transaction Commands</div>
     <table class="cmd-table transactions">
       <tr><td>begin</td><td>Start the transaction process</td></tr>
       <tr><td>commit</td><td>End and save the transaction</td></tr>
       <tr><td>rollback</td><td>Undo changes if the transaction fails</td></tr>
     </table>
-
   </div>
 </section>
 
 <hr class="divider">
 
 <!-- TYPE EXAMPLE -->
-<section>
+<section aria-labelledby="types-heading">
   <div class="section-tag">Walkthrough</div>
-  <h2>Types in Action</h2>
+  <h2 id="types-heading">Types in Action</h2>
   <p>Types are user-defined, flexible structures — perfect for game entities like players, items, or enemies.</p>
 
   <div class="note">When defining string fields in a type, you must specify the string size. Use <code>string(255)</code> if memory usage isn't a concern.</div>
 
-  <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment"># 1. Open your database</span>
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment"># 1. Open your database</span>
 <span class="cmd">stark_cli mygame</span>
 
 <span class="comment"># 2. Define a player type</span>
@@ -255,7 +328,7 @@
   <h3 style="margin-top:3rem">Transactions Example</h3>
   <p>Transactions work like a surgeon — begin, do the job, commit. Best used when updating values that must succeed atomically.</p>
 
-  <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="kw">stark&gt; define</span> player { id <span class="str">int</span> hp <span class="str">int</span> level <span class="str">int</span> }
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="kw">stark&gt; define</span> player { id <span class="str">int</span> hp <span class="str">int</span> level <span class="str">int</span> }
 <span class="kw">stark&gt; add</span> player <span class="num">1</span> id=<span class="num">123</span> hp=<span class="num">100</span> level=<span class="num">0</span>
 
 <span class="comment"># Player won a fight — update atomically</span>
@@ -267,12 +340,12 @@
 <hr class="divider">
 
 <!-- C++ API -->
-<section>
+<section aria-labelledby="cpp-heading">
   <div class="section-tag">C++ Integration</div>
-  <h2>Using STARK in C++</h2>
+  <h2 id="cpp-heading">Using STARK in C++</h2>
   <p>Just add <code>#include &lt;stark.hpp&gt;</code> to your project. The installation step already handles everything else.</p>
 
-  <pre><button class="copy-btn" onclick="copyCode(this)">COPY</button><code><span class="comment">// main.cpp</span>
+  <pre><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">COPY</button><code><span class="comment">// main.cpp</span>
 <span class="kw">#include</span> <span class="str">&lt;stark.hpp&gt;</span>
 
 <span class="kw">int</span> main() {
@@ -325,20 +398,19 @@ db.rollback();
 <span class="kw">auto</span> stats = db.stats();
 <span class="kw">std::string</span> err = db.get_last_error();</code></pre>
     </div>
-     <div class="api-card">
+    <div class="api-card">
       <h4>Summary</h4>
-      <p>These are summary of how to use STARK in C++. More languages and explanation will be added in further updates.</p>
+      <p style="margin:0;font-size:.75rem">These are summaries of how to use STARK in C++. More languages and detailed explanations will be added in future updates.</p>
     </div>
-
   </div>
 </section>
 
 <hr class="divider">
 
 <!-- COMPARISON -->
-<section>
+<section aria-labelledby="compare-heading">
   <div class="section-tag">Benchmarks</div>
-  <h2>How STARK Compares</h2>
+  <h2 id="compare-heading">How STARK Compares</h2>
 
   <h3>Core Features</h3>
   <div class="table-section">
@@ -362,7 +434,7 @@ db.rollback();
     </table>
   </div>
 
-  <h3 style="margin-top:3rem">Usage & Developer Experience</h3>
+  <h3 style="margin-top:3rem">Usage &amp; Developer Experience</h3>
   <div class="table-section">
     <table>
       <thead>
@@ -373,7 +445,7 @@ db.rollback();
         <tr><td>Load in 1 sec</td><td class="check">✅ 0.5 µs</td><td>3 µs</td><td>1 µs</td><td>50 µs</td></tr>
         <tr><td>Offline Use</td><td class="check">✅ Yes</td><td class="check">✅ Yes</td><td class="cross">❌ No</td><td class="cross">❌ No</td></tr>
         <tr><td>Simple Syntax</td><td class="check">✅ add(1, "Hero")</td><td>INSERT INTO …</td><td>SET key val</td><td>db.insert()</td></tr>
-        <tr><td>Focus</td><td class="">Offline apps</td><td>General purpose</td><td>Cache</td><td>Web apps</td></tr>
+        <tr><td>Focus</td><td>Offline apps</td><td>General purpose</td><td>Cache</td><td>Web apps</td></tr>
       </tbody>
     </table>
   </div>
@@ -412,13 +484,13 @@ db.rollback();
 <hr class="divider">
 
 <!-- WHY / WHY NOT -->
-<section>
+<section aria-labelledby="decision-heading">
   <div class="section-tag">Decision Guide</div>
-  <h2>Should You Use STARK?</h2>
+  <h2 id="decision-heading">Should You Use STARK?</h2>
 
   <div class="cards-grid">
     <div class="card pro">
-      <div class="card-title">👍 Choose STARK when…</div>
+      <div class="card-title">Choose STARK when...</div>
       <div class="card-row">
         <div class="card-icon">⚡</div>
         <div class="card-text">
@@ -457,7 +529,7 @@ db.rollback();
     </div>
 
     <div class="card con">
-      <div class="card-title">👎 Skip STARK when…</div>
+      <div class="card-title">Skip STARK when...</div>
       <div class="card-row">
         <div class="card-icon">🗃️</div>
         <div class="card-text">
@@ -500,20 +572,27 @@ db.rollback();
 <hr class="divider">
 
 <!-- CONTACT -->
-<div class="contact">
+<section class="contact" aria-labelledby="contact-heading">
   <div class="section-tag" style="justify-content:center;margin-bottom:1rem">Contact</div>
-  <h2>Questions or Feedback?</h2>
+  <h2 id="contact-heading">Questions or Feedback?</h2>
   <p>For questions, advice, or to report an issue, feel completely free to reach out.</p>
   <a href="mailto:novruzluabdullah03@gmail.com" class="contact-link">
     <span>✉</span>
     novruzluabdullah03@gmail.com
   </a>
-</div>
+</section>
+</main>
 
 <footer>
-  <p>STARK · Open Source · MIT License · github.com/abdullahtnz/starkdb</p>
+  <p>STARK · Open Source · MIT License</p>
+  <div class="footer-links">
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+    <a href="website/docs.html">Docs</a>
+    <a href="website/installation.html">Install</a>
+    <a href="mailto:novruzluabdullah03@gmail.com">Contact</a>
+  </div>
 </footer>
 
-<script src="website/js/main.js">  </script>
+<script src="website/js/main.js"></script>
 </body>
 </html>
