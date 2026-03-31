@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="icon" type="image/png" href="../assets/starklogo.png">
+  <link rel="apple-touch-icon" href="../assets/starklogo.png">
+
+  <title>Changelog — STARKDB | Updates & Release Notes</title>
+  <meta name="title" content="STARKDB Changelog — Updates & Release Notes">
+  <meta name="description" content="Track STARKDB updates, new features, bug fixes, and release notes. See what changed in every version.">
+  <meta name="keywords" content="starkdb changelog, starkdb updates, starkdb release notes, starkdb version history, starkdb what's new">
+  <meta name="author" content="Abdullah Novruzlu">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starkdb.org/website/logs.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starkdb.org/website/logs.html">
+  <meta property="og:title" content="STARKDB Changelog — Updates & Release Notes">
+  <meta property="og:description" content="Track STARKDB updates, new features, bug fixes, and release notes.">
+  <meta property="og:image" content="https://starkdb.org/assets/starklogo.png">
+  <meta property="og:site_name" content="STARKDB">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://starkdb.org/website/logs.html">
+  <meta name="twitter:title" content="STARKDB Changelog — Updates & Release Notes">
+  <meta name="twitter:description" content="Track STARKDB updates, new features, bug fixes, and release notes.">
+  <meta name="twitter:image" content="https://starkdb.org/assets/starklogo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "STARKDB Changelog — Updates & Release Notes",
+    "description": "Complete changelog for STARKDB tracking all versions, features, fixes, and contributors.",
+    "url": "https://starkdb.org/website/logs.html",
+    "author": { "@type": "Person", "name": "Abdullah Novruzlu" },
+    "publisher": { "@type": "Organization", "name": "STARKDB" },
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-03-31"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="STARKDB Home">
+      <img src="../assets/starklogo.png" alt="STARKDB logo" width="32" height="32">
+      STARK<span>DB</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="logs.html" class="active">Logs</a></li>
+      <li><a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta nav-desktop">Star on GitHub</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="docs.html">Docs</a>
+  <a href="installation.html">Install</a>
+  <a href="logs.html" class="active">Logs</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener" class="nav-cta">Star on GitHub</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-tag">Changelog</div>
+  <h1>Release Logs</h1>
+  <p>Tech updates, new features, bug fixes, and version history. Newest entries first.</p>
+</div>
+
+<!-- LOGS TIMELINE -->
+<main>
+<div class="logs-timeline">
+
+  <!-- ============================================================
+       LOG ENTRY TEMPLATE — Copy this block to add a new entry.
+       Fill in: date, version, type (feature/fix/breaking),
+       contributors, and change sections.
+       ============================================================ -->
+
+  <!-- LOG ENTRY — Example 1 -->
+  <article class="log-entry feature" aria-label="Version 1.1.0 release">
+    <div class="log-header">
+      <time class="log-date" datetime="2026-03-31">Mar 31, 2026</time>
+      <span class="log-version">v1.1.0</span>
+      <span class="log-type feature">Feature Release</span>
+    </div>
+    <h2 class="log-title">Website Launch & Documentation Overhaul</h2>
+    <div class="log-contributors">Abdullah Novruzlu</div>
+
+    <div class="log-section">
+      <div class="log-section-title added">Added</div>
+      <ul class="log-list">
+        <li class="added">Complete responsive website with landing, docs, install, and logs pages</li>
+        <li class="added">Full CLI reference with command tables and examples</li>
+        <li class="added">C++ API reference with code snippets for all methods</li>
+        <li class="added">Changelog page with timeline layout</li>
+        <li class="added">SEO optimization — JSON-LD, Open Graph, Twitter cards, sitemap</li>
+      </ul>
+    </div>
+
+    <div class="log-section">
+      <div class="log-section-title fixed">Fixed</div>
+      <ul class="log-list">
+        <li class="fixed">Responsive layout issues on tablet and mobile viewports</li>
+        <li class="fixed">Sidebar/content overlap on large desktop screens</li>
+        <li class="fixed">Table overflow breaking layout on narrow viewports</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- LOG ENTRY — Example 2 (remove/edit to add your own) -->
+  <article class="log-entry fix" aria-label="Version 1.0.0 release">
+    <div class="log-header">
+      <time class="log-date" datetime="2026-01-01">Jan 01, 2026</time>
+      <span class="log-version">v1.0.0</span>
+      <span class="log-type feature">Initial Release</span>
+    </div>
+    <h2 class="log-title">STARKDB Initial Release</h2>
+    <div class="log-contributors">Abdullah Novruzlu</div>
+
+    <div class="log-section">
+      <div class="log-section-title added">Added</div>
+      <ul class="log-list">
+        <li class="added">B-tree key-value engine in C</li>
+        <li class="added">CLI interface with numeric keys, string keys, and typed records</li>
+        <li class="added">C++ wrapper (stark.hpp) with exception-safe API</li>
+        <li class="added">ACID transaction support (begin/commit/rollback)</li>
+        <li class="added">Cursor-based iteration via C API</li>
+        <li class="added">User-defined type system with int and string(N) fields</li>
+        <li class="added">CMake build system for Windows and Linux</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- ============================================================
+       ADD NEW LOG ENTRIES ABOVE THIS COMMENT
+       Copy a log-entry block and fill in your details.
+       ============================================================ -->
+
+</div>
+</main>
+
+<footer>
+  <p>STARK · Open Source · MIT License</p>
+  <div class="footer-links">
+    <a href="https://github.com/abdullahtnz/starkdb" target="_blank" rel="noopener">GitHub</a>
+    <a href="docs.html">Docs</a>
+    <a href="installation.html">Install</a>
+    <a href="logs.html">Logs</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

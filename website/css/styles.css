@@ -645,6 +645,111 @@ footer p{font-size:.65rem;color:var(--border);margin:0;letter-spacing:.1em}
 }
 
 /* ============================================================
+   LOGS PAGE
+   ============================================================ */
+.logs-timeline{
+  position:relative;
+  padding:2rem 0 6rem;
+}
+.logs-timeline::before{
+  content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--accent),var(--accent2),var(--accent3),transparent);
+  border-radius:1px;
+}
+.log-entry{
+  position:relative;
+  margin-left:52px;
+  margin-bottom:3rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:2rem 2.5rem;
+  transition:border-color .2s;
+}
+.log-entry:hover{
+  border-color:rgba(232,255,71,.2);
+}
+.log-entry::before{
+  content:'';position:absolute;
+  left:-40px;top:2.2rem;
+  width:14px;height:14px;
+  background:var(--accent);
+  border:3px solid var(--bg);
+  border-radius:50%;
+  box-shadow:0 0 12px rgba(232,255,71,.3);
+}
+.log-entry.feature::before{background:var(--accent);box-shadow:0 0 12px rgba(232,255,71,.3)}
+.log-entry.fix::before{background:var(--accent2);box-shadow:0 0 12px rgba(71,255,232,.3)}
+.log-entry.breaking::before{background:var(--accent3);box-shadow:0 0 12px rgba(255,107,71,.3)}
+
+.log-header{
+  display:flex;flex-wrap:wrap;align-items:center;gap:1rem;
+  margin-bottom:1.5rem;padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+}
+.log-date{
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  color:var(--muted);letter-spacing:.06em;
+}
+.log-version{
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  padding:4px 12px;border-radius:2px;
+  background:rgba(232,255,71,.08);border:1px solid rgba(232,255,71,.25);
+  color:var(--accent);letter-spacing:.08em;
+}
+.log-type{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  padding:4px 10px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase;
+}
+.log-type.feature{background:rgba(232,255,71,.06);border:1px solid rgba(232,255,71,.2);color:var(--accent)}
+.log-type.fix{background:rgba(71,255,232,.06);border:1px solid rgba(71,255,232,.2);color:var(--accent2)}
+.log-type.breaking{background:rgba(255,107,71,.06);border:1px solid rgba(255,107,71,.2);color:var(--accent3)}
+
+.log-title{
+  font-size:1.3rem;font-weight:700;color:var(--text);
+  letter-spacing:-.02em;margin-bottom:.5rem;
+}
+.log-contributors{
+  font-family:'Space Mono',monospace;font-size:.68rem;
+  color:var(--muted);display:flex;align-items:center;gap:6px;
+}
+.log-contributors::before{
+  content:'';display:block;width:10px;height:1px;background:var(--muted);
+}
+
+.log-section{margin-bottom:1.5rem}
+.log-section:last-child{margin-bottom:0}
+.log-section-title{
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:.75rem;display:flex;align-items:center;gap:8px;
+}
+.log-section-title.added{color:var(--accent)}
+.log-section-title.added::before{content:'+';font-size:.85rem;font-weight:700}
+.log-section-title.fixed{color:var(--accent2)}
+.log-section-title.fixed::before{content:'~';font-size:.85rem;font-weight:700}
+.log-section-title.removed{color:var(--accent3)}
+.log-section-title.removed::before{content:'-';font-size:.85rem;font-weight:700}
+.log-section-title.changed{color:var(--accent4)}
+.log-section-title.changed::before{content:'*';font-size:.85rem;font-weight:700}
+
+.log-list{list-style:none;padding:0}
+.log-list li{
+  font-family:'Space Mono',monospace;font-size:.78rem;
+  color:var(--muted);padding:6px 0;padding-left:16px;
+  position:relative;line-height:1.7;
+}
+.log-list li::before{
+  content:'';position:absolute;left:0;top:14px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);
+}
+.log-list li.added::before{background:var(--accent)}
+.log-list li.fixed::before{background:var(--accent2)}
+.log-list li.removed::before{background:var(--accent3)}
+.log-list li.changed::before{background:var(--accent4)}
+
+/* ============================================================
    PRINT
    ============================================================ */
 @media print{
@@ -655,4 +760,24 @@ footer p{font-size:.65rem;color:var(--border);margin:0;letter-spacing:.1em}
   a{color:#111;text-decoration:underline}
   .docs-layout{display:block;padding:0}
   .docs-content{max-width:100%;padding:1rem}
+}
+
+/* ============================================================
+   RESPONSIVE — LOGS PAGE
+   ============================================================ */
+@media(max-width:750px){
+  .logs-timeline::before{left:16px}
+  .log-entry{margin-left:44px;padding:1.5rem 1.25rem}
+  .log-entry::before{left:-36px;width:12px;height:12px}
+  .log-header{gap:.75rem}
+  .log-title{font-size:1.1rem}
+  .log-list li{font-size:.72rem}
+}
+
+@media(max-width:480px){
+  .logs-timeline::before{left:12px}
+  .log-entry{margin-left:36px;padding:1.25rem 1rem}
+  .log-entry::before{left:-30px;width:10px;height:10px;top:1.8rem}
+  .log-header{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .log-title{font-size:1rem}
 }
